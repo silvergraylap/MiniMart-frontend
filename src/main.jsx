@@ -6,13 +6,12 @@ import { BrowserRouter } from 'react-router-dom'
 import store from '../src/store/store'
 
 import '../src/styles/register.css'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
-   //  <StrictMode>
-   <Provider store={store}>
-      <BrowserRouter>
-         <App />
-      </BrowserRouter>
-   </Provider>
-   //  </StrictMode>
+   // <StrictMode>
+   <BrowserRouter>
+      <App />
+   </BrowserRouter>
+   // </StrictMode>
 )
