@@ -1,17 +1,27 @@
-// src/pages/LoginKakao.jsx
-function LoginKakao() {
-   const handleKakaoLogin = () => {
-      window.location.href = 'http://localhost:8000/auth/kakao'
-   }
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getKakaoLoginUrl } from '../features/authSlice'
+
+function LoginPage() {
+   const dispatch = useDispatch()
+   const { loginUrl, loading } = useSelector((state) => state.auth)
+
+   useEffect(() => {
+      dispatch(getKakaoLoginUrl())
+   }, [dispatch])
+
+   if (loading) return <div>로딩 중...</div>
 
    return (
       <div>
          <h1>로그인 페이지</h1>
-         <button style={{ border: 'none', backgroundColor: 'white' }} onClick={handleKakaoLogin}>
-            <img src="kakao_login_small.png" alt="kakao_login" />
-         </button>
+         {loginUrl && (
+            <a href={loginUrl}>
+               <img src="kakao_login_small.png" alt="카카오 로그인" />
+            </a>
+         )}
       </div>
    )
 }
 
-export default LoginKakao
+export default LoginPage

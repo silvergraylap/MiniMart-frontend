@@ -1,23 +1,23 @@
-// src/pages/LoginSuccess.jsx
 import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setToken, fetchUserInfo } from '../features/authSlice'
+import { useNavigate } from 'react-router-dom'
 
-function LoginSuccess() {
-   const [searchParams] = useSearchParams()
-   const token = searchParams.get('token')
+export default function LoginSuccess() {
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
 
    useEffect(() => {
+      const params = new URLSearchParams(window.location.search)
+      const token = params.get('token')
+
       if (token) {
-         localStorage.setItem('jwt', token)
+         dispatch(setToken(token))
+         dispatch(fetchUserInfo()).then(() => {
+            navigate('/')
+         })
       }
-   }, [token])
+   }, [dispatch, navigate])
 
-   return (
-      <div>
-         <h1>로그인 성공!</h1>
-         <p>토큰: {token}</p>
-      </div>
-   )
+   return <div>로그인 처리 중...</div>
 }
-
-export default LoginSuccess
