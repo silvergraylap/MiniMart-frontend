@@ -1,5 +1,6 @@
 import minimartApi from './axiosApi'
 const API_URL = 'http://localhost:8000'
+
 // 회원가입
 export const registerUser = async (userData) => {
    try {
@@ -14,7 +15,7 @@ export const registerUser = async (userData) => {
 // 로그인
 export const loginUser = async (credentials) => {
    try {
-      const response = await minimartApi.post('/auth/login', credentials)
+      const response = await minimartApi.post(`${API_URL}/auth/login`, credentials)
       return response
    } catch (error) {
       console.error('로그인 요청 오류:', error)
