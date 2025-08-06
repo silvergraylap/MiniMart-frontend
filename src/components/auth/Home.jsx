@@ -11,6 +11,7 @@ function Home() {
    const handleLogout = () => {
       dispatch(logout())
    }
+   console.log(user)
 
    return (
       <div>
@@ -26,7 +27,7 @@ function Home() {
             <div className="user">
                {user ? (
                   <>
-                     <h1>{user.name}님 환영합니다!</h1>
+                     <h1>{user.nickname}님 환영합니다!</h1>
                      <button onClick={handleLogout}>로그아웃</button>
                   </>
                ) : (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUserThunk, getKakaoLoginUrl } from '../../features/authSlice'
+import { loginUserThunk, getKakaoLoginUrlThunk } from '../../features/authSlice'
 import { useNavigate } from 'react-router-dom'
 import '../../styles/register.css'
 
@@ -8,6 +8,7 @@ function Login() {
    const dispatch = useDispatch()
    const navigate = useNavigate()
    const { isLoading, error, loginUrl, loading } = useSelector((state) => state.auth)
+
 
    const [formData, setFormData] = useState({
       email: '',
@@ -40,7 +41,7 @@ function Login() {
    }
 
    useEffect(() => {
-      dispatch(getKakaoLoginUrl())
+      dispatch(getKakaoLoginUrlThunk())
    }, [dispatch])
 
    if (loading) return <div>로딩 중...</div>

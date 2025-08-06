@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUserInfo } from './features/authSlice'
+import { fetchUserInfoThunk } from './features/authSlice'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import LoginSuccess from './pages/LoginSuccess'
@@ -15,7 +15,7 @@ function App() {
    // 앱 시작 시 토큰이 있으면 사용자 정보 요청
    useEffect(() => {
       if (token) {
-         dispatch(fetchUserInfo())
+         dispatch(fetchUserInfoThunk())
       }
    }, [dispatch, token])
 
