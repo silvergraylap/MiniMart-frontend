@@ -1,3 +1,4 @@
+import React from 'react'
 import '../../styles/minipage.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../features/authSlice'

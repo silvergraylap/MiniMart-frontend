@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import LoginKakao from './pages/LoginKakao'
 import LoginSuccess from './pages/LoginSuccess'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginKakao'
+import React from 'react'
 
 function App() {
    const dispatch = useDispatch()
@@ -21,6 +24,8 @@ function App() {
       <>
          <Routes>
             <Route path="/" element={<MainPage />}></Route>
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/login1" element={<LoginKakao />} />
             <Route path="/login/success" element={<LoginSuccess />} />
          </Routes>
