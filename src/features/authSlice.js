@@ -4,7 +4,7 @@ import axios from 'axios'
 // 로그인된 사용자 정보 가져오기
 export const fetchUserInfo = createAsyncThunk('auth/fetchUserInfo', async (_, { getState }) => {
    const token = getState().auth.token
-   const res = await axios.get('http://localhost:8000/auth/me', {
+   const res = await axios.get('http://localhost:8000/auth/kakao/me', {
       headers: { Authorization: `Bearer ${token}` },
    })
    console.log('카카오 사용자 정보:', res)
@@ -13,7 +13,7 @@ export const fetchUserInfo = createAsyncThunk('auth/fetchUserInfo', async (_, { 
 
 // 카카오 로그인 URL 가져오기
 export const getKakaoLoginUrl = createAsyncThunk('auth/getKakaoLoginUrl', async () => {
-   const res = await axios.get('http://localhost:8000/auth/kakao')
+   const res = await axios.get('http://localhost:8000/auth/kakao/')
    return res.data.url
 })
 
