@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 function MainPage() {
    const dispatch = useDispatch()
-   const user = useSelector((state) => state.auth.user)
+   const { user, isAuthenticated, loading, error } = useSelector((state) => state.auth)
 
    const handleLogout = () => {
       dispatch(logout())
