@@ -9,7 +9,6 @@ function Login() {
    const navigate = useNavigate()
    const { isLoading, error, loginUrl, loading } = useSelector((state) => state.auth)
 
-
    const [formData, setFormData] = useState({
       email: '',
       password: '',
@@ -45,6 +44,9 @@ function Login() {
    }, [dispatch])
 
    if (loading) return <div>로딩 중...</div>
+   const handleGoogleLogin = () => {
+      window.location.href = `${import.meta.env.VITE_API_URL}/auth/google/login`
+   }
 
    return (
       <div className="login-container">
@@ -69,7 +71,7 @@ function Login() {
                      <img src="kakao_login_small.png" alt="카카오 로그인" />
                   </a>
                )}
-               <img src="/icons/google.png" alt="구글 로그인" className="social-icon" />
+               <img src="/icons/google.png" alt="구글 로그인" className="social-icon" onClick={handleGoogleLogin} />
             </div>
          </form>
       </div>
