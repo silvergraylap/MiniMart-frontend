@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getKakaoLoginUrl } from '../features/authSlice'
 
-function LoginPage() {
+function LoginKaKao() {
    const dispatch = useDispatch()
    const { loginUrl, loading } = useSelector((state) => state.auth)
 
@@ -25,4 +25,4 @@ function LoginPage() {
    )
 }
 
-export default LoginPage
+export default LoginKaKao

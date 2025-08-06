@@ -6,7 +6,7 @@ import MainPage from './pages/MainPage'
 import LoginKakao from './pages/LoginKakao'
 import LoginSuccess from './pages/LoginSuccess'
 import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginKakao'
+import LoginPage from './pages/LoginPage'
 import React from 'react'
 
 function App() {
