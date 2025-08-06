@@ -1,0 +1,28 @@
+ul {
+   list-style-type: none;
+}
+
+.search-logo {
+   width: 161px;
+   height: 48px;
+}
+
+.serach {
+   width: 890px;
+   height: 39px;
+   display: flex;
+   border-radius: 50px;
+   background-color: rgb(255, 255, 188);
+   line-height: 39px;
+   justify-content: space-between;
+}
+
+.serach > div:nth-child(1) > span {
+   width: 10px;
+   height: 5px;
+   background-color: aqua;
+}
+
+.user {
+   text-align: right;
+}
