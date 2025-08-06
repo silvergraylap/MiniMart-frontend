@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUserThunk } from '../../features/authSlice'
+import { loginUserThunk, getKakaoLoginUrl } from '../../features/authSlice'
 import { useNavigate } from 'react-router-dom'
 import '../../styles/register.css'
 
 function Login() {
    const dispatch = useDispatch()
    const navigate = useNavigate()
-   const { isLoading, error } = useSelector((state) => state.auth)
+   const { isLoading, error, loginUrl, loading } = useSelector((state) => state.auth)
 
    const [formData, setFormData] = useState({
       email: '',
@@ -39,6 +39,12 @@ function Login() {
       // 실패 시 error는 useSelector로 출력 (아래 렌더링 참고)
    }
 
+   useEffect(() => {
+      dispatch(getKakaoLoginUrl())
+   }, [dispatch])
+
+   if (loading) return <div>로딩 중...</div>
+
    return (
       <div className="login-container">
          <form className="login-form-box" onSubmit={handleSubmit}>
@@ -57,7 +63,11 @@ function Login() {
             <div className="login-divider">다른 방법으로 로그인하기</div>
 
             <div className="social-login-icons">
-               <img src="/icons/kakao.png" alt="카카오 로그인" className="social-icon" />
+               {loginUrl && (
+                  <a href={loginUrl}>
+                     <img src="kakao_login_small.png" alt="카카오 로그인" />
+                  </a>
+               )}
                <img src="/icons/google.png" alt="구글 로그인" className="social-icon" />
             </div>
          </form>

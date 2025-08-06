@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserInfo } from './features/authSlice'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
-import LoginKakao from './pages/LoginKakao'
 import LoginSuccess from './pages/LoginSuccess'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
@@ -26,7 +25,6 @@ function App() {
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/login1" element={<LoginKakao />} />
             <Route path="/login/success" element={<LoginSuccess />} />
          </Routes>
       </>
