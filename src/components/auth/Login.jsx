@@ -67,8 +67,8 @@ function Login() {
 
             <div className="social-login-icons">
                {loginUrl && (
-                  <a href={loginUrl}>
-                     <img src="kakao_login_small.png" alt="카카오 로그인" />
+                  <a style={{ width: '60px' }} href={loginUrl}>
+                     <img src="/kakao_login_small.png" alt="카카오 로그인" />
                   </a>
                )}
                <img src="/icons/google.png" alt="구글 로그인" className="social-icon" onClick={handleGoogleLogin} />
