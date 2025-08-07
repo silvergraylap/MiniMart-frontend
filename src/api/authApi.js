@@ -1,5 +1,5 @@
 import minimartApi from './axiosApi'
-const API_URL = 'http://localhost:8000'
+const API_URL = import.meta.env.VITE_API_URL
 
 // 카카오 로그인 URL 가져오기
 export const getKakaoLoginUrl = async () => {

@@ -6,6 +6,8 @@ import MainPage from './pages/MainPage'
 import LoginSuccess from './pages/LoginSuccess'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
+import ItemCreatePage from './pages/item/ItemCreatePage'
+
 import React from 'react'
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
    useEffect(() => {
       if (token) {
          dispatch(fetchUserInfoThunk())
+      } else {
+         dispatch(checkAuthStatusThunk())
       }
    }, [dispatch, token])
 
@@ -27,6 +31,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/login/success" element={<LoginSuccess />} />
+            <Route path="/item/upload" element={<ItemCreatePage />} />
          </Routes>
       </>
    )
