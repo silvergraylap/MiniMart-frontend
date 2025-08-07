@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import FindPasswordPage from './pages/FindPasswordPage'
 import ItemCreatePage from './pages/item/ItemCreatePage'
+import Haeder from './components/auth/Header'
 
 function App() {
    const dispatch = useDispatch()
@@ -26,6 +27,7 @@ function App() {
 
    return (
       <>
+         <Haeder />
          <Routes>
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/register" element={<RegisterPage />} />
