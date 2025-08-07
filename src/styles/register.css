@@ -10,7 +10,6 @@ html {
    background: #f7f7f7; /* 전체 배경색을 약간 회색으로 */
    display: flex;
    justify-content: center;
-   align-items: center;
    min-height: 100vh;
 }
 

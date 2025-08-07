@@ -7,6 +7,7 @@ import LoginSuccess from './pages/LoginSuccess'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import ItemCreatePage from './pages/item/ItemCreatePage'
+import Haeder from './components/auth/Header'
 
 import React from 'react'
 
@@ -26,6 +27,7 @@ function App() {
 
    return (
       <>
+         <Haeder />
          <Routes>
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/register" element={<RegisterPage />} />
