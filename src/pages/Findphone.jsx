@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
 // --- Mock API 데이터 ---
 const mockUserDatabase = [
@@ -15,14 +14,6 @@ const maskEmail = (email) => {
 
 // --- 스타일 객체 (CSS-in-JS) ---
 const styles = {
-   container: {
-      backgroundColor: '#f1f5f9',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '100vh',
-      fontFamily: 'sans-serif',
-   },
    card: {
       width: '100%',
       maxWidth: '448px',
@@ -30,68 +21,13 @@ const styles = {
       backgroundColor: 'white',
       borderRadius: '16px',
       boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+      margin: '2rem auto', // 페이지 중앙 정렬을 위해 추가
    },
-   h1: {
-      fontSize: '30px',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      color: '#1e293b',
-      marginBottom: '1rem',
-   },
-   p: {
-      marginBottom: '2rem',
-      textAlign: 'center',
-   },
-   input: {
-      width: '100%',
-      padding: '12px 16px',
-      marginTop: '4px',
-      color: '#334155',
-      backgroundColor: '#f8fafc',
-      border: '1px solid #cbd5e1',
-      borderRadius: '8px',
-      boxSizing: 'border-box',
-   },
-   button: {
-      width: '100%',
-      padding: '12px',
-      fontWeight: '600',
-      color: 'white',
-      backgroundColor: '#4338ca',
-      borderRadius: '8px',
-      border: 'none',
-      cursor: 'pointer',
-      marginTop: '1rem',
-   },
-   buttonSecondary: {
-      width: '50%',
-      padding: '12px',
-      fontWeight: '600',
-      color: '#334155',
-      backgroundColor: '#e2e8f0',
-      borderRadius: '8px',
-      border: 'none',
-      cursor: 'pointer',
-   },
-   buttonGroup: {
-      display: 'flex',
-      gap: '8px',
-      marginTop: '1rem',
-   },
-}
-
-// --- 페이지 컴포넌트들 ---
-
-function HomePage() {
-   return (
-      <div style={styles.card}>
-         <h1 style={styles.h1}>Vite + React 프로젝트</h1>
-         <p style={styles.p}>아래 링크를 눌러 비밀번호 찾기 페이지로 이동하세요.</p>
-         <Link to="/find-password">
-            <button style={styles.button}>비밀번호 찾으러 가기</button>
-         </Link>
-      </div>
-   )
+   h1: { fontSize: '30px', fontWeight: 'bold', textAlign: 'center', color: '#1e293b', marginBottom: '1rem' },
+   input: { width: '100%', padding: '12px 16px', marginTop: '4px', color: '#334155', backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '8px', boxSizing: 'border-box' },
+   button: { width: '100%', padding: '12px', fontWeight: '600', color: 'white', backgroundColor: '#4338ca', borderRadius: '8px', border: 'none', cursor: 'pointer', marginTop: '1rem' },
+   buttonSecondary: { width: '50%', padding: '12px', fontWeight: '600', color: '#334155', backgroundColor: '#e2e8f0', borderRadius: '8px', border: 'none', cursor: 'pointer' },
+   buttonGroup: { display: 'flex', gap: '8px', marginTop: '1rem' },
 }
 
 function FindPasswordPage() {
@@ -196,16 +132,4 @@ function FindPasswordPage() {
    )
 }
 
-// --- 전체 앱 레이아웃 및 라우터 설정 ---
-export default function App() {
-   return (
-      <BrowserRouter>
-         <div style={styles.container}>
-            <Routes>
-               <Route path="/" element={<HomePage />} />
-               <Route path="/find-password" element={<FindPasswordPage />} />
-            </Routes>
-         </div>
-      </BrowserRouter>
-   )
-}
+export default FindPasswordPage

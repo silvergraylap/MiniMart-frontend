@@ -208,17 +208,3 @@ function FindPasswordPage() {
       </div>
    )
 }
-
-// --- 전체 앱 레이아웃 및 라우터 설정 ---
-export default function App() {
-   return (
-      <BrowserRouter>
-         <div style={styles.container}>
-            <Routes>
-               <Route path="/" element={<HomePage />} />
-               <Route path="/find-password" element={<FindPasswordPage />} />
-            </Routes>
-         </div>
-      </BrowserRouter>
-   )
-}
