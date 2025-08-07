@@ -364,3 +364,40 @@ html {
    transform: scale(1.1);
    opacity: 0.9;
 }
+
+/* 이메일 비번 화면 */
+.form {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+.form input {
+   padding: 10px;
+   font-size: 1rem;
+}
+
+.form-container {
+   max-width: 400px;
+   margin: 0 auto;
+   padding: 40px 20px;
+}
+.error {
+   color: red;
+   font-size: 0.9rem;
+}
+
+.find-password-page {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 80vh;
+}
+
+.form-section {
+   width: 100%;
+   max-width: 400px;
+   padding: 2rem;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   background-color: white;
+}

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkAuthStatusThunk, fetchUserInfoThunk } from './features/authSlice'
@@ -6,9 +7,10 @@ import MainPage from './pages/MainPage'
 import LoginSuccess from './pages/LoginSuccess'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
+import FindPasswordPage from './pages/FindPasswordPage'
 import ItemCreatePage from './pages/item/ItemCreatePage'
-
 import React from 'react'
+
 
 function App() {
    const dispatch = useDispatch()
@@ -31,6 +33,8 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/login/success" element={<LoginSuccess />} />
+            {/* 이메일 비번찾기 */}
+            <Route path="/findpassword" element={<FindPasswordPage />} />
             <Route path="/item/upload" element={<ItemCreatePage />} />
          </Routes>
       </>
