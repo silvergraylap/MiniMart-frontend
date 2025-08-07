@@ -10,7 +10,6 @@ html {
    background: #f7f7f7; /* 전체 배경색을 약간 회색으로 */
    display: flex;
    justify-content: center;
-   align-items: center;
    min-height: 100vh;
 }
 
@@ -75,6 +74,40 @@ html {
 .register-input input:focus {
    outline: none;
    border-color: #facc15; /* 포커스 시 테두리 색상 변경 */
+   box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.3);
+}
+
+.birthyear-select {
+   width: 30%;
+   height: 48px;
+   padding: 0 16px;
+   border: 1px solid #d9d9d9;
+   border-radius: 8px;
+   font-size: 16px;
+   background-color: #fff;
+   transition: border-color 0.2s;
+}
+
+.birthyear-select:focus {
+   outline: none;
+   border-color: #facc15;
+   box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.3);
+}
+
+.phone-input {
+   width: 100%;
+   height: 48px;
+   padding: 0 16px;
+   border: 1px solid #d9d9d9;
+   border-radius: 8px;
+   font-size: 16px;
+   background-color: #fff;
+   transition: border-color 0.2s;
+}
+
+.phone-input:focus {
+   outline: none;
+   border-color: #facc15;
    box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.3);
 }
 
