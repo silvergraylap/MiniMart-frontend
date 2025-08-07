@@ -39,6 +39,10 @@ function Login() {
       // 실패 시 error는 useSelector로 출력 (아래 렌더링 참고)
    }
 
+   const handleGoogleLogin = () => {
+      window.location.href = `${import.meta.env.VITE_API_URL}/auth/google/login`
+   }
+
    return (
       <div className="login-container">
          <form className="login-form-box" onSubmit={handleSubmit}>
@@ -58,7 +62,7 @@ function Login() {
 
             <div className="social-login-icons">
                <img src="/icons/kakao.png" alt="카카오 로그인" className="social-icon" />
-               <img src="/icons/google.png" alt="구글 로그인" className="social-icon" />
+               <img src="/icons/google.png" alt="구글 로그인" className="social-icon" onClick={handleGoogleLogin} />
             </div>
          </form>
       </div>
