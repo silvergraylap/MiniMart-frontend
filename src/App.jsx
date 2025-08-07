@@ -1,14 +1,16 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkAuthStatusThunk, fetchUserInfo } from './features/authSlice'
+import { checkAuthStatusThunk, fetchUserInfoThunk } from './features/authSlice'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
-import LoginKakao from './pages/LoginKakao'
 import LoginSuccess from './pages/LoginSuccess'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import FindPasswordPage from './pages/FindPasswordPage'
+import ItemCreatePage from './pages/item/ItemCreatePage'
+import React from 'react'
+
 
 function App() {
    const dispatch = useDispatch()
@@ -18,7 +20,7 @@ function App() {
    // 카카오 토큰이 없으면 로컬 로그인이 되어있는가 체크
    useEffect(() => {
       if (token) {
-         dispatch(fetchUserInfo())
+         dispatch(fetchUserInfoThunk())
       } else {
          dispatch(checkAuthStatusThunk())
       }
@@ -30,10 +32,10 @@ function App() {
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/login1" element={<LoginKakao />} />
             <Route path="/login/success" element={<LoginSuccess />} />
             {/* 이메일 비번찾기 */}
             <Route path="/findpassword" element={<FindPasswordPage />} />
+            <Route path="/item/upload" element={<ItemCreatePage />} />
          </Routes>
       </>
    )
