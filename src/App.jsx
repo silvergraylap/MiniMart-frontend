@@ -9,8 +9,6 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import FindPasswordPage from './pages/FindPasswordPage'
 import ItemCreatePage from './pages/item/ItemCreatePage'
-import React from 'react'
-
 
 function App() {
    const dispatch = useDispatch()
