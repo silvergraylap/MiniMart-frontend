@@ -13,14 +13,13 @@ const LoginSuccess = () => {
       const token = searchParams.get('token')
 
       if (token) {
-         // 1. 토큰을 Redux 상태와 localStorage에 저장
          dispatch(setToken(token))
-         // 2. 저장된 토큰을 이용해 사용자 정보를 요청하는 Thunk 실행
-         dispatch(fetchUserInfoThunk())
-         // 3. 메인 페이지로 이동
-         navigate('/')
+         localStorage.setItem('token', token) // 🔒 토큰 확실히 저장
+         setTimeout(() => {
+            dispatch(fetchUserInfoThunk()) // ✅ 약간 딜레이를 줘서 axios가 토큰 읽을 수 있게
+            navigate('/')
+         }, 100)
       } else {
-         console.error('로그인 토큰이 없습니다.')
          navigate('/login')
       }
    }, [dispatch, navigate, searchParams])
