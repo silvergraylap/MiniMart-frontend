@@ -1,17 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { registerUser, loginUser, logoutUser, checkAuthStatus, getKakaoLoginUrl } from '../api/authApi'
+import { registerUser, loginUser, logoutUser, checkAuthStatus, getKakaoLoginUrl, fetchUserInfo } from '../api/authApi'
 
 //카카오 로그인 관련
 // 토큰으로 사용자 정보 가져오기
-export const fetchUserInfoThunk = createAsyncThunk('auth/fetchUserInfo', async (_, { getState, rejectWithValue }) => {
+export const fetchUserInfoThunk = createAsyncThunk('auth/fetchUserInfo', async (_, { rejectWithValue }) => {
    try {
-      const token = getState().auth.token
-      const res = await axios.get('/auth/kakao/me', {
-         // 백엔드 GET /auth/kakao/me API 호출
-         headers: { Authorization: `Bearer ${token}` },
-      })
-      return res.data
+      const data = await fetchUserInfo()
+      return data
    } catch (error) {
       return rejectWithValue(error.response?.data?.message || '카카오 사용자 정보 불러오기 실패')
    }

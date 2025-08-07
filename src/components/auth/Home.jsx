@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../styles/minipage.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../features/authSlice'
+import { logout, fetchUserInfoThunk } from '../../features/authSlice'
 import { Link } from 'react-router-dom'
 
 function Home() {
    const dispatch = useDispatch()
    const user = useSelector((state) => state.auth.user)
+   const token = useSelector((state) => state.auth.token)
+
+   useEffect(() => {
+      if (token && !user) {
+         dispatch(fetchUserInfoThunk())
+      }
+   }, [dispatch, token, user])
 
    const handleLogout = () => {
       dispatch(logout())
+      window.location.reload()
    }
-   console.log(user)
 
    return (
       <div>
@@ -27,7 +34,7 @@ function Home() {
             <div className="user">
                {user ? (
                   <>
-                     <h1>{user.nickname}님 환영합니다!</h1>
+                     <h1>{user.name}님 환영합니다!</h1>
                      <button onClick={handleLogout}>로그아웃</button>
                   </>
                ) : (

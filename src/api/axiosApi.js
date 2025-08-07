@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = import.meta.env.VITE_APP_API_URL
+const BASE_URL = import.meta.env.VITE_API_URL
 const AUTH_KEY = import.meta.env.VITE_APP_AUTH_KEY
 
 //axios 인스턴스 생성
@@ -11,6 +11,14 @@ const minimartApi = axios.create({
       Authorization: AUTH_KEY,
    },
    withCredentials: true, // 세션 쿠키를 요청에 포함
+})
+
+minimartApi.interceptors.request.use((config) => {
+   const token = localStorage.getItem('token')
+   if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+   }
+   return config
 })
 
 export default minimartApi
