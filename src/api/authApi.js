@@ -13,6 +13,18 @@ export const getKakaoLoginUrl = async () => {
    }
 }
 
+// 카카오 사용자 정보 조회
+export const fetchUserInfo = async () => {
+   try {
+      const response = await minimartApi.get('/auth/kakao/me') // 헤더는 interceptors로 자동 설정됨
+      return response.data
+   } catch (error) {
+      console.error('사용자 정보 조회 오류:', error)
+      throw error
+   }
+}
+
+
 // 로그아웃시 토큰 삭제
 export const KakaoLogout = async () => {
    await minimartApi.post('/auth/kakao/logout') // 서버 호출 (선택 사항)

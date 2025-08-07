@@ -13,4 +13,12 @@ const minimartApi = axios.create({
    withCredentials: true, // 세션 쿠키를 요청에 포함
 })
 
+minimartApi.interceptors.request.use((config) => {
+   const token = localStorage.getItem('token')
+   if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+   }
+   return config
+})
+
 export default minimartApi
