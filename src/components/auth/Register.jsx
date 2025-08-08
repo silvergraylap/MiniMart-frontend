@@ -7,6 +7,7 @@ import '../../styles/register.css'
 function Register() {
    const [name, setName] = useState('')
    const [email, setEmail] = useState('')
+   const [age, setAge] = useState('')
    const [password, setPassword] = useState('')
    const [confirmPassword, setConfirmPassword] = useState('')
    const [postcode, setPostcode] = useState('')
@@ -102,7 +103,7 @@ function Register() {
 
          <div className="register-input">
             <label htmlFor="birthYear">출생년도</label>
-            <select id="birthYear" name="birthYear" className="birthyear-select">
+            <select id="birthYear" name="birthYear" className="birthyear-select" value={age} onChange={(e) => setAge(e.target.value)}>
                {Array.from({ length: 2025 - 1899 + 1 }, (_, i) => {
                   const year = 2025 - i
                   return (
