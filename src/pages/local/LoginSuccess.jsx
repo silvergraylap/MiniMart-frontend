@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setToken, fetchUserInfoThunk } from '../features/authSlice'
+import { setToken, fetchUserInfoThunk } from '../../features/authSlice'
 
 const LoginSuccess = () => {
    const dispatch = useDispatch()

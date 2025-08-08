@@ -2,6 +2,30 @@ import React from 'react'
 // import '../styles/mypage'
 
 const OrderList = ({ orders }) => {
+   const [orderData, setOrderData] = useState([])
+   useEffect(() => {
+      if (orders.length > 0) {
+         setOrderData(orders)
+      } else {
+         // 어떻게나오나임시로만든주문내역이니제출시꼭삭제
+         setOrderData([
+            {
+               id: 1,
+               product_img: '/sample-item.png',
+               product_name: '샘플 상품 1',
+               order_date: '2025-08-01',
+               status: '배송완료',
+            },
+            {
+               id: 2,
+               product_img: '/sample-item.png',
+               product_name: '샘플 상품 2',
+               order_date: '2025-07-28',
+               status: '배송중',
+            },
+         ])
+      }
+   }, [orders])
    if (!orders || orders.length === 0) {
       return <div className="order-empty">주문 내역이 없습니다.</div>
    }

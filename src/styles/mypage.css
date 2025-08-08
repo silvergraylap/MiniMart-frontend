@@ -97,3 +97,140 @@
 .withdraw-button:hover {
    background-color: #b02a37;
 }
+
+.order-list-section {
+   margin-top: 40px;
+}
+
+.order-list-title {
+   font-size: 20px;
+   font-weight: 700;
+   margin-bottom: 16px;
+   border-bottom: 2px solid #333;
+   padding-bottom: 8px;
+}
+
+.order-item {
+   display: flex;
+   align-items: center;
+   border: 1px solid #ddd;
+   border-radius: 10px;
+   padding: 16px;
+   margin-bottom: 16px;
+   background-color: #fff;
+   gap: 16px;
+}
+
+/* 상품 이미지 */
+.order-item img {
+   width: 100px;
+   height: 100px;
+   object-fit: cover;
+   border-radius: 8px;
+   flex-shrink: 0;
+   border: 1px solid #ccc;
+}
+
+/* 텍스트 정보 영역 */
+.order-item-info {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+}
+
+.order-item-name {
+   font-size: 16px;
+   font-weight: 600;
+}
+
+.order-item-date {
+   font-size: 14px;
+   color: #666;
+}
+
+.order-item-status {
+   font-size: 14px;
+   color: #007bff;
+   font-weight: 500;
+}
+
+/* 버튼 영역 */
+.order-item-actions {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.order-action-button {
+   padding: 8px 12px;
+   font-size: 14px;
+   border: none;
+   border-radius: 6px;
+   background-color: #28a745;
+   color: #fff;
+   cursor: pointer;
+   white-space: nowrap;
+}
+
+.order-action-button:hover {
+   background-color: #218838;
+}
+.following-list-section {
+   margin-top: 40px;
+}
+
+.following-list-title {
+   font-size: 20px;
+   font-weight: 700;
+   margin-bottom: 16px;
+   border-bottom: 2px solid #333;
+   padding-bottom: 8px;
+}
+
+.following-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 16px;
+}
+
+.following-item {
+   width: 200px;
+   border: 1px solid #ddd;
+   border-radius: 10px;
+   padding: 16px;
+   background-color: #fff;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.following-thumbnail {
+   width: 80px;
+   height: 80px;
+   border-radius: 50%;
+   object-fit: cover;
+   margin-bottom: 12px;
+   border: 1px solid #ccc;
+}
+
+.following-nickname {
+   font-size: 16px;
+   font-weight: 600;
+   margin-bottom: 8px;
+   text-align: center;
+}
+
+.unfollow-button {
+   padding: 6px 12px;
+   font-size: 14px;
+   background-color: #dc3545;
+   color: #fff;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+}
+
+.unfollow-button:hover {
+   background-color: #c82333;
+}

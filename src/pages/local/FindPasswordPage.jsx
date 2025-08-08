@@ -1,5 +1,5 @@
 import React from 'react'
-import FindPasswordForm from '../components/auth/FindPasswordForm'
+import FindPasswordForm from '../../components/auth/FindPasswordForm'
 
 const FindPasswordPage = () => {
    return (

@@ -45,6 +45,7 @@ function Register() {
 
       dispatch(
          registerUserThunk({
+            name,
             email,
             password,
             address: `${address} ${detailAddress} ${extraAddress}`,
@@ -123,15 +124,14 @@ function Register() {
          </div>
 
          <div className="register-input">
-            <label>우편번호</label>
+            <label>주소지 입력</label>
             <div className="postcode-box">
-               <input type="tel" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" readOnly />
+               <input type="number" className="postcode-box-input" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" />
                <button className="postcode-button">우편번호 찾기</button>
             </div>
          </div>
 
          <div className="register-input">
-            <label>주소</label>
             <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="주소" />
          </div>
 
