@@ -7,7 +7,7 @@
 body,
 html {
    font-family: 'Inter', 'Noto Sans KR', sans-serif; /* 한국어 폰트 추가 */
-   background: #f7f7f7; /* 전체 배경색을 약간 회색으로 */
+   background: #f7f7f7; /*    전체 배경색을 약간 회색으로 */
    display: flex;
    justify-content: center;
    min-height: 100vh;
@@ -26,7 +26,7 @@ html {
    background: #ffffff;
    border: 1px solid #d9d9d9;
    border-radius: 8px;
-   margin: 40px 0; /* 위아래 여백 */
+   margin: 10px 0; /* 위아래 여백 */
 }
 
 .register-container h2 {
@@ -56,6 +56,7 @@ html {
 }
 
 .register-input label {
+   display: flex;
    font-size: 16px;
    font-weight: 500;
    color: #1e1e1e;
@@ -78,7 +79,6 @@ html {
 }
 
 .birthyear-select {
-   width: 30%;
    height: 48px;
    padding: 0 16px;
    border: 1px solid #d9d9d9;
@@ -121,7 +121,11 @@ html {
    flex-grow: 1; /* 남은 공간을 모두 차지 */
 }
 
+.postcode-box-input {
+   width: 30%;
+}
 .postcode-button {
+   width: 30%;
    height: 48px;
    padding: 0 24px;
    background: #e0e0e0;
@@ -364,6 +368,19 @@ html {
 .login-submit-btn:disabled {
    background: #cccccc;
    cursor: not-allowed;
+}
+
+.firstvisit {
+   text-decoration: none;
+   color: inherit; /* 기본 텍스트 색상 유지 */
+   cursor: pointer;
+}
+
+.findpassword {
+   text-decoration: none;
+   color: inherit; /* 기본 텍스트 색상 유지 */
+   cursor: pointer;
+   font-size: 12px;
 }
 
 /* --- 구분선 --- */

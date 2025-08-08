@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loginUserThunk, getKakaoLoginUrlThunk } from '../../features/authSlice'
 import { useNavigate } from 'react-router-dom'
 import '../../styles/register.css'
+import { Link } from 'react-router-dom'
 
 function Login() {
    const dispatch = useDispatch()
@@ -62,7 +63,9 @@ function Login() {
             <button type="submit" className="login-submit-btn" disabled={isLoading}>
                {isLoading ? '로그인 중...' : '로그인'}
             </button>
-
+            <Link to="/register" className="firstvisit">
+               처음 방문하셨나요?
+            </Link>
             <div className="login-divider">다른 방법으로 로그인하기</div>
 
             <div className="social-login-icons">
@@ -73,6 +76,10 @@ function Login() {
                )}
                <img src="/icons/google.png" alt="구글 로그인" className="social-icon" onClick={handleGoogleLogin} />
             </div>
+
+            <Link to="/findpassword" className="findpassword">
+               비밀번호를 잊어버리셨나요?
+            </Link>
          </form>
       </div>
    )
