@@ -11,6 +11,7 @@ function Register() {
    const [confirmPassword, setConfirmPassword] = useState('')
    const [postcode, setPostcode] = useState('')
    const [address, setAddress] = useState('')
+   const [phone_number, setPhone_number] = useState('')
    const [detailAddress, setDetailAddress] = useState('')
    const [extraAddress, setExtraAddress] = useState('')
    const [isRegisterComplete, setIsRegisterComplete] = useState(false)
@@ -124,7 +125,7 @@ function Register() {
                placeholder="01012345678"
                maxLength="11"
                onChange={(e) => {
-                  const onlyNums = e.target.value.replace(/\D/g, '')
+                  setPhone_number(e.target.value.replace(/\D/g, ''))
                   e.target.value = onlyNums
                }}
             />
