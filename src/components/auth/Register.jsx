@@ -42,12 +42,18 @@ function Register() {
          alert('비밀번호가 일치하지 않습니다!')
          return
       }
+      if (phone_number !== phone_number) {
+         alert('비밀번호가 일치하지 않습니다!')
+         return
+      }
 
       dispatch(
          registerUserThunk({
             name,
             email,
             password,
+            phone_number,
+            age,
             address: `${address} ${detailAddress} ${extraAddress}`,
          })
       )
@@ -113,6 +119,7 @@ function Register() {
                type="tel"
                id="phone"
                name="phone"
+               value={phone_number}
                className="phone-input"
                placeholder="01012345678"
                maxLength="11"
@@ -126,7 +133,7 @@ function Register() {
          <div className="register-input">
             <label>주소지 입력</label>
             <div className="postcode-box">
-               <input type="number" className="postcode-box-input" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" />
+               <input type="number" className="postcode-box" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" />
                <button className="postcode-button">우편번호 찾기</button>
             </div>
          </div>
