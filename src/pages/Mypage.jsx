@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import './Mypage.css'
+// import '../styles/mypage'
 
-import UserInfoBox from '../components/mypage/UserInfoBox'
-import OrderList from '../components/mypage/OrderList'
-import FollowList from '../components/mypage/FollowList'
+import UserInfoBox from '../components/my/UserInfoBox'
+import OrderList from '../components/my/OrderList'
+import FollowList from '../components/my/FollowList'
 
 const Mypage = () => {
    const [data, setData] = useState(null)

@@ -10,6 +10,7 @@ import FindPasswordPage from './pages/FindPasswordPage'
 import ItemCreatePage from './pages/item/ItemCreatePage'
 import React from 'react'
 import Haeder from './components/auth/Header'
+import Mypage from './pages/Mypage'
 
 function App() {
    const dispatch = useDispatch()
@@ -33,9 +34,11 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/login/success" element={<LoginSuccess />} />
+            <Route path="/item/upload" element={<ItemCreatePage />} />
             {/* 이메일 비번찾기 */}
             <Route path="/findpassword" element={<FindPasswordPage />} />
-            <Route path="/item/upload" element={<ItemCreatePage />} />
+            {/* 내 정보 페이지 */}
+            <Route path="/Mypage" element={<Mypage />} />
          </Routes>
       </>
    )

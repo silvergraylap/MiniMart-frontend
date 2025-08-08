@@ -1,5 +1,5 @@
 import React from 'react'
-import './UserInfoBox.css'
+// import '../styles/mypage'
 
 const UserInfoBox = ({ user }) => {
    const [isEditing, setIsEditing] = useState(false)

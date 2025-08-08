@@ -1,5 +1,5 @@
 import React from 'react'
-import './OrderList.css'
+// import '../styles/mypage'
 
 const OrderList = ({ orders }) => {
    if (!orders || orders.length === 0) {

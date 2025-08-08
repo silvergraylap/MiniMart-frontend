@@ -1,5 +1,5 @@
 import React from 'react'
-import './FollowList.css'
+// import '../styles/mypage'
 
 const FollowList = ({ followings }) => {
    if (!followings || followings.length === 0) {
