@@ -1,15 +1,16 @@
-import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkAuthStatusThunk, fetchUserInfoThunk } from './features/authSlice'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
-import LoginSuccess from './pages/LoginSuccess'
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
-import FindPasswordPage from './pages/FindPasswordPage'
+import LoginSuccess from './pages/local/LoginSuccess'
+import RegisterPage from './pages/local/RegisterPage'
+import LoginPage from './pages/local/LoginPage'
+import FindPasswordPage from './pages/local/FindPasswordPage'
 import ItemCreatePage from './pages/item/ItemCreatePage'
+import React from 'react'
 import Haeder from './components/auth/Header'
+import Mypage from './pages/Mypage'
 
 function App() {
    const dispatch = useDispatch()
@@ -33,9 +34,11 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/login/success" element={<LoginSuccess />} />
+            <Route path="/item/upload" element={<ItemCreatePage />} />
             {/* 이메일 비번찾기 */}
             <Route path="/findpassword" element={<FindPasswordPage />} />
-            <Route path="/item/upload" element={<ItemCreatePage />} />
+            {/* 내 정보 페이지 */}
+            <Route path="/Mypage" element={<Mypage />} />
          </Routes>
       </>
    )

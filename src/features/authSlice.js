@@ -63,6 +63,21 @@ export const checkAuthStatusThunk = createAsyncThunk('auth/checkAuthStatus', asy
    }
 })
 
+// 회원 탈퇴
+export const deleteUserThunk = createAsyncThunk('auth/deleteUser', async (_, thunkAPI) => {
+   try {
+      const state = thunkAPI.getState()
+      const token = state.auth.user?.token
+      await deleteUser(token)
+
+      // 탈퇴 성공 후 로그아웃 처리
+      thunkAPI.dispatch(logoutUserThunk())
+      return true
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data?.message || '탈퇴 실패')
+   }
+})
+
 const initialState = {
    token: localStorage.getItem('token') || null, // 카카오 로그인 토큰 저장
    loginUrl: '', // 카카오 로그인 URL
