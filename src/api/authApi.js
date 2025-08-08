@@ -24,7 +24,6 @@ export const fetchUserInfo = async () => {
    }
 }
 
-
 // 로그아웃시 토큰 삭제
 export const KakaoLogout = async () => {
    await minimartApi.post('/auth/kakao/logout') // 서버 호출 (선택 사항)
@@ -34,7 +33,7 @@ export const KakaoLogout = async () => {
 // 회원가입
 export const registerUser = async (userData) => {
    try {
-      const response = await minimartApi.post(`${API_URL}/auth/register`, userData)
+      const response = await minimartApi.post(`${API_URL}/auth/local/register`, userData)
       return response
    } catch (error) {
       console.error('회원가입 요청 오류:', error)
@@ -45,7 +44,7 @@ export const registerUser = async (userData) => {
 // 로그인
 export const loginUser = async (credentials) => {
    try {
-      const response = await minimartApi.post(`${API_URL}/auth/login`, credentials)
+      const response = await minimartApi.post(`${API_URL}/auth/local/login`, credentials)
       return response
    } catch (error) {
       console.error('로그인 요청 오류:', error)
@@ -73,4 +72,12 @@ export const checkAuthStatus = async () => {
       console.error('로그인 상태 확인 오류:', error)
       throw error
    }
+}
+
+// 회원탈퇴
+export const deleteUser = async (token) => {
+   const response = await axios.delete('/users/me', {
+      headers: { Authorization: `Bearer ${token}` },
+   })
+   return response.data
 }

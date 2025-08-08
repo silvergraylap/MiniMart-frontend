@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import '../../styles/register.css'
 
 function Register() {
+   const [name, setName] = useState('')
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
    const [confirmPassword, setConfirmPassword] = useState('')
@@ -72,6 +73,11 @@ function Register() {
          {error && <p className="register-error">{error}</p>}
 
          <div className="register-input">
+            <label>이름</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="이름을 입력해주세요" />
+         </div>
+
+         <div className="register-input">
             <label>이메일</label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@example.com" />
          </div>
@@ -87,9 +93,39 @@ function Register() {
          </div>
 
          <div className="register-input">
+            <label htmlFor="birthYear">출생년도</label>
+            <select id="birthYear" name="birthYear" className="birthyear-select">
+               {Array.from({ length: 2025 - 1899 + 1 }, (_, i) => {
+                  const year = 2025 - i
+                  return (
+                     <option key={year} value={year}>
+                        {year}
+                     </option>
+                  )
+               })}
+            </select>
+         </div>
+
+         <div className="register-input">
+            <label htmlFor="phone">전화번호</label>
+            <input
+               type="tel"
+               id="phone"
+               name="phone"
+               className="phone-input"
+               placeholder="01012345678"
+               maxLength="11"
+               onChange={(e) => {
+                  const onlyNums = e.target.value.replace(/\D/g, '')
+                  e.target.value = onlyNums
+               }}
+            />
+         </div>
+
+         <div className="register-input">
             <label>우편번호</label>
             <div className="postcode-box">
-               <input type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" />
+               <input type="tel" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" readOnly />
                <button className="postcode-button">우편번호 찾기</button>
             </div>
          </div>

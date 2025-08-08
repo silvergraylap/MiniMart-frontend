@@ -13,7 +13,7 @@ const FindPasswordForm = () => {
    // Step 1: 인증코드 요청
    const handleSendCode = async () => {
       try {
-         const res = await minimartApi.post('/auth/find/email/send-code', { email })
+         const res = await minimartApi.post('auth/local/find/email/send-code', { email })
          setStep(2)
          setMessage('인증 코드가 이메일로 전송되었습니다.')
       } catch (err) {
@@ -24,7 +24,7 @@ const FindPasswordForm = () => {
    // Step 2: 인증코드 확인
    const handleVerifyCode = async () => {
       try {
-         const res = await minimartApi.post('/auth/find/email/verify-and-reset', {
+         const res = await minimartApi.post('auth/local/find/email/verify-and-reset', {
             email,
             verificationCode: codeInput,
             newPassword,
