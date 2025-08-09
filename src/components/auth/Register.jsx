@@ -126,8 +126,8 @@ function Register() {
                placeholder="01012345678"
                maxLength="11"
                onChange={(e) => {
-                  setPhone_number(e.target.value.replace(/\D/g, ''))
-                  e.target.value = onlyNums
+                  const onlyNums = e.target.value.replace(/\D/g, '')
+                  setPhone_number(onlyNums)
                }}
             />
          </div>
