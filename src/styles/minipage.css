@@ -110,3 +110,22 @@ ul {
    border-radius: 10px;
    margin: 10px;
 }
+
+/* 말줄임표 */
+.text-ellipsis1 {
+   white-space: nowrap; /* 줄 바꿈 방지 */
+   overflow: hidden; /* 넘치는 내용 숨김 */
+   text-overflow: ellipsis; /* 말줄임표 적용 */
+   width: 17 0px; /* 원하는 너비 설정 */
+}
+
+/* 3줄 말줄임표 */
+.text-ellipsis3 {
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* 보여줄 최대 줄 수 */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: normal; /* 한 줄 고정 해제 */
+   max-width: 200px; /* 필요하면 고정/최대너비 */
+}
