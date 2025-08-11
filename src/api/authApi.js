@@ -1,10 +1,6 @@
 import axios from 'axios'
 import minimartApi from './axiosApi'
 const API_URL = import.meta.env.VITE_API_URL
-const token = localStorage.getItem('token')
-if (token) {
-   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-}
 
 // 카카오 로그인 URL 가져오기
 export const getKakaoLoginUrl = async () => {
@@ -67,11 +63,15 @@ export const logoutUser = async () => {
 
    if (token) {
       try {
-         const response = await minimartApi.post('/auth/logout', null, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-         })
+         const response = await minimartApi.post(
+            '/auth/local/logout',
+            {},
+            {
+               headers: {
+                  Authorization: `Bearer ${token}`,
+               },
+            }
+         )
 
          localStorage.removeItem('token')
          return response
