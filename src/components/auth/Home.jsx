@@ -102,6 +102,7 @@ function Home() {
             </div>
          </div>
          {/* 신제품 출시! 나중에 상품 등록 되면 DB에서 어떻게 가져올지 보고 변경*/}
+         <h1 className="new-h1">신제품 출시 !</h1>
          <div style={{ display: 'flex' }}>
             <Card sx={{ maxWidth: 345 }}>
                <CardActionArea>
@@ -161,7 +162,7 @@ function Home() {
          </div>
          <div style={{ display: 'flex', margin: '100px', flexWrap: 'wrap' }}>
             {/* MD 추천 픽 나중에 상품 등록 되면 DB에서 어떻게 가져올지 보고 결정*/}
-            <h1>MD 추천 픽</h1>
+            <h1 className="md-h1">MD 추천 픽 !</h1>
             {mdProduct.map((e) => {
                return (
                   <Card key={e[0]} sx={{ maxWidth: 250, margin: '50px' }}>
@@ -182,6 +183,40 @@ function Home() {
                   </Card>
                )
             })}
+         </div>
+         {/* 지금 인기있는 제품들 */}
+         <h1 className="popular-h1">지금 인기있는 제품들</h1>
+         <div style={{ display: 'flex' }}>
+            <Card sx={{ maxWidth: 510 }}>
+               <CardActionArea>
+                  <CardMedia sx={{ height: 525 }} component="img" height="140" image="/인기제품/popular1.png" alt="신제품1" />
+                  <CardContent>
+                     <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'left' }}>
+                        썬글라스
+                     </Typography>
+                     <Typography component="div" sx={{ display: 'flex' }}>
+                        <Typography component="span" variant="h6" sx={{ color: 'text.secondary', textAlign: 'left' }}>
+                           20대 인기 1위
+                        </Typography>
+                     </Typography>
+                  </CardContent>
+               </CardActionArea>
+            </Card>
+            <Card sx={{ maxWidth: 510 }}>
+               <CardActionArea>
+                  <CardMedia sx={{ height: 525 }} component="img" height="140" image="/인기제품/popular2.png" alt="신제품1" />
+                  <CardContent>
+                     <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'left' }}>
+                        썬글라스
+                     </Typography>
+                     <Typography component="div" sx={{ display: 'flex' }}>
+                        <Typography component="span" variant="h6" sx={{ color: 'text.secondary', textAlign: 'left' }}>
+                           10대 인기 1위
+                        </Typography>
+                     </Typography>
+                  </CardContent>
+               </CardActionArea>
+            </Card>
          </div>
       </div>
    )

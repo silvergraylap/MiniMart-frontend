@@ -111,6 +111,12 @@ ul {
    margin: 10px;
 }
 
+/* 신제품 출시! */
+.new-h1 {
+   margin: 60px 30px;
+   text-align: left;
+}
+
 /* 말줄임표 */
 .text-ellipsis1 {
    white-space: nowrap; /* 줄 바꿈 방지 */
@@ -128,4 +134,16 @@ ul {
    text-overflow: ellipsis;
    white-space: normal; /* 한 줄 고정 해제 */
    max-width: 200px; /* 필요하면 고정/최대너비 */
+}
+
+/* MD 추천 픽 */
+.md-h1 {
+   text-align: left;
+   margin-left: 50px;
+}
+
+/* 지금 인기있는 제품들 */
+.popular-h1 {
+   text-align: left;
+   margin: 40px 0 80px 100px;
 }
