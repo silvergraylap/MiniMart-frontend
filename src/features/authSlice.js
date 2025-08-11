@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { registerUser, loginUser, logoutUser, checkAuthStatus, getKakaoLoginUrl, fetchUserInfo } from '../api/authApi'
+import { registerUser, loginUser, logoutUser, checkAuthStatus, getKakaoLoginUrl, fetchUserInfo, checkCookie } from '../api/authApi'
 
 //카카오 로그인 관련
 // 토큰으로 사용자 정보 가져오기
@@ -78,6 +78,16 @@ export const deleteUserThunk = createAsyncThunk('auth/deleteUser', async (_, thu
    }
 })
 
+// 구글 로그인 쿠키 체크
+export const checkCookieThunk = createAsyncThunk('auth/checkCookie', async (_, { rejectWithValue }) => {
+   try {
+      const response = await checkCookie()
+      return response
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data?.message || '문제발생')
+   }
+})
+
 const initialState = {
    token: localStorage.getItem('token') || null, // 카카오 로그인 토큰 저장
    loginUrl: '', // 카카오 로그인 URL
@@ -85,6 +95,8 @@ const initialState = {
    isAuthenticated: false,
    loading: false,
    error: null,
+   loginLoading: false,
+   kakaoLoading: false,
 }
 
 const authSlice = createSlice({
@@ -148,17 +160,18 @@ const authSlice = createSlice({
 
          /* 로컬 로그인 */
          .addCase(loginUserThunk.pending, (state) => {
-            state.loading = true
+            state.loginLoading = true
             state.error = null
          })
          .addCase(loginUserThunk.fulfilled, (state, action) => {
-            state.loading = false
+            state.loginLoading = false
             state.isAuthenticated = true
             state.user = action.payload
+            state.error = null
          })
          .addCase(loginUserThunk.rejected, (state, action) => {
-            state.loading = false
-            state.error = action.payload
+            state.loginLoading = false
+            state.error = action.error.message || '로그인 실패'
          })
 
          /* 로컬 로그아웃 */
@@ -166,10 +179,10 @@ const authSlice = createSlice({
             state.loading = true
             state.error = null
          })
-         .addCase(logoutUserThunk.fulfilled, (state) => {
+         .addCase(logoutUserThunk.fulfilled, (state, action) => {
             state.loading = false
             state.isAuthenticated = false
-            state.user = null
+            state.user = null //로그아웃 후 유저 정보 초기화
          })
          .addCase(logoutUserThunk.rejected, (state, action) => {
             state.loading = false
