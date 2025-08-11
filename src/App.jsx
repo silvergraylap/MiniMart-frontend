@@ -38,9 +38,10 @@ function App() {
             <Route path="/item/upload" element={<ItemCreatePage />} />
             {/* 이메일 비번찾기 */}
             <Route path="/findpassword" element={<FindPasswordPage />} />
-            {/* 내 정보 페이지 */}
-            <Route path="/Mypage" element={<Mypage />} />
+            {/* 내 정보 페이지 */}          
             <Route path="/login/success/google" element={<GoogleLoginSuccess />} />
+            <Route path="/mypage" element={<Mypage />} />
+
          </Routes>
       </>
    )

@@ -7,7 +7,7 @@ import '../../styles/register.css'
 function Register() {
    const [name, setName] = useState('')
    const [email, setEmail] = useState('')
-   const [age, setAge] = useState('')
+   const [age, setAge] = useState('2025')
    const [password, setPassword] = useState('')
    const [confirmPassword, setConfirmPassword] = useState('')
    const [postcode, setPostcode] = useState('')
@@ -126,8 +126,8 @@ function Register() {
                placeholder="01012345678"
                maxLength="11"
                onChange={(e) => {
-                  setPhone_number(e.target.value.replace(/\D/g, ''))
-                  e.target.value = onlyNums
+                  const onlyNums = e.target.value.replace(/\D/g, '')
+                  setPhone_number(onlyNums)
                }}
             />
          </div>
@@ -135,7 +135,17 @@ function Register() {
          <div className="register-input">
             <label>주소지 입력</label>
             <div className="postcode-box">
-               <input type="number" className="postcode-box" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" />
+               <input
+                  type="text"
+                  className="postcode-box"
+                  value={postcode}
+                  maxLength={5}
+                  onChange={(e) => {
+                     const onlyNums = e.target.value.replace(/\D/g, '') // 숫자만
+                     setPostcode(onlyNums)
+                  }}
+                  placeholder="우편번호 입력"
+               />
                <button className="postcode-button">우편번호 찾기</button>
             </div>
          </div>

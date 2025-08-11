@@ -26,7 +26,7 @@ const LoginButton = styled.button`
 `
 function Haeder() {
    const dispatch = useDispatch()
-   const user = useSelector((state) => state.auth.user)
+   const user = useSelector((state) => state.auth?.user)
    const token = useSelector((state) => state.auth.token)
 
    useEffect(() => {
@@ -37,7 +37,7 @@ function Haeder() {
 
    const handleLogout = () => {
       dispatch(logout())
-      window.location.reload()
+      window.location.href = '/'
    }
    console.log(user)
 
@@ -62,7 +62,7 @@ function Haeder() {
                   </>
                ) : (
                   <Link
-                     to="/login "
+                     to="/login"
                      style={{
                         display: 'inline-block',
                         width: 'fit-content',
