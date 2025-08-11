@@ -19,6 +19,7 @@ export const updateMyPageData = (data) => {
    })
 }
 
+//회원 탈퇴
 export const deleteMyAccount = () => {
    return axios.delete(`${API_URL}/mypage/delete`, {
       headers: getAuthHeader(),
