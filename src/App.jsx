@@ -11,6 +11,7 @@ import ItemCreatePage from './pages/item/ItemCreatePage'
 import React from 'react'
 import Haeder from './components/auth/Header'
 import Mypage from './pages/Mypage'
+import GoogleLoginSuccess from './pages/auth/GoogleLoginSuccess'
 
 function App() {
    const dispatch = useDispatch()
@@ -39,6 +40,7 @@ function App() {
             <Route path="/findpassword" element={<FindPasswordPage />} />
             {/* 내 정보 페이지 */}
             <Route path="/Mypage" element={<Mypage />} />
+            <Route path="/login/success/google" element={<GoogleLoginSuccess />} />
          </Routes>
       </>
    )
