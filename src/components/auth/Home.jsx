@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import '../../styles/minipage.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserInfoThunk } from '../../features/authSlice'
-import { itemRecentThunk } from '../../features/itemSlice'
+import { itemPopularThunk, itemRecentThunk } from '../../features/itemSlice'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
 
@@ -38,10 +38,14 @@ function Home() {
    const dispatch = useDispatch()
    const user = useSelector((state) => state.auth.user)
    const token = useSelector((state) => state.auth.token)
-   const { itemRecent, loading, error } = useSelector((state) => state.item)
+   const { itemRecent, itemPopular, loading, error } = useSelector((state) => state.item)
 
    useEffect(() => {
       dispatch(itemRecentThunk())
+   }, [dispatch])
+
+   useEffect(() => {
+      dispatch(itemPopularThunk())
    }, [dispatch])
 
    useEffect(() => {
@@ -50,6 +54,7 @@ function Home() {
       }
    }, [dispatch, token, user])
 
+   console.log(itemPopular)
    return (
       <div style={{ width: '1200px' }}>
          {/* 검색하는 부분 */}
