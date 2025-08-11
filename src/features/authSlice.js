@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { registerUser, loginUser, logoutUser, checkAuthStatus, getKakaoLoginUrl, fetchUserInfo } from '../api/authApi'
+import { registerUser, loginUser, logoutUser, checkAuthStatus, getKakaoLoginUrl, fetchUserInfo, checkCookie } from '../api/authApi'
 
 //카카오 로그인 관련
 // 토큰으로 사용자 정보 가져오기
@@ -75,6 +75,16 @@ export const deleteUserThunk = createAsyncThunk('auth/deleteUser', async (_, thu
       return true
    } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data?.message || '탈퇴 실패')
+   }
+})
+
+// 구글 로그인 쿠키 체크
+export const checkCookieThunk = createAsyncThunk('auth/checkCookie', async (_, { rejectWithValue }) => {
+   try {
+      const response = await checkCookie()
+      return response
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data?.message || '문제발생')
    }
 })
 
