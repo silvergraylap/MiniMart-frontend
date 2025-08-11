@@ -53,6 +53,7 @@ html {
    flex-direction: column;
    gap: 8px;
    width: 100%;
+   text-align: start;
 }
 
 .register-input label {
@@ -70,6 +71,7 @@ html {
    border-radius: 8px;
    font-size: 16px;
    transition: border-color 0.2s;
+   text-align: start;
 }
 
 .register-input input:focus {
@@ -119,10 +121,6 @@ html {
 
 .postcode-box input {
    flex-grow: 1; /* 남은 공간을 모두 차지 */
-}
-
-.postcode-box-input {
-   width: 30%;
 }
 .postcode-button {
    width: 30%;
@@ -331,6 +329,7 @@ html {
    border-radius: 8px;
    font-size: 16px;
    transition: border-color 0.2s, box-shadow 0.2s;
+   text-align: start;
 }
 
 .login-input:focus {
@@ -386,7 +385,6 @@ html {
 /* --- 구분선 --- */
 .login-divider {
    width: 100%;
-   text-align: center;
    border-bottom: 1px solid #e0e0e0;
    line-height: 0.1em;
    margin: 32px 0;

@@ -1,5 +1,9 @@
 import minimartApi from './axiosApi'
 const API_URL = import.meta.env.VITE_API_URL
+const token = localStorage.getItem('token')
+if (token) {
+   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+}
 
 // 카카오 로그인 URL 가져오기
 export const getKakaoLoginUrl = async () => {
@@ -54,12 +58,25 @@ export const loginUser = async (credentials) => {
 
 // 로그아웃
 export const logoutUser = async () => {
-   try {
-      const response = await minimartApi.get('/auth/logout')
-      return response
-   } catch (error) {
-      console.error('로그아웃 요청 오류:', error)
-      throw error
+   const token = localStorage.getItem('token')
+
+   if (token) {
+      try {
+         const response = await minimartApi.post('/auth/logout', null, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+         })
+
+         localStorage.removeItem('token')
+         return response
+      } catch (error) {
+         console.error(`API Request 오류: ${error}`)
+         throw error
+      }
+   } else {
+      localStorage.removeItem('token')
+      return { success: true, message: '이미 로그아웃 상태입니다.' }
    }
 }
 
@@ -76,8 +93,20 @@ export const checkAuthStatus = async () => {
 
 // 회원탈퇴
 export const deleteUser = async (token) => {
-   const response = await axios.delete('/users/me', {
+   const response = await minimartApi.delete('/users/me', {
       headers: { Authorization: `Bearer ${token}` },
    })
    return response.data
+}
+
+//구글 로그인시 확인창 관리 쿠키 생성
+export const setCookie = async () => {
+   const response = await minimartApi.post('/auth/google/setcookie')
+   return response.data.expired
+}
+
+//구글 로그인시 쿠키 체크
+export const checkCookie = async () => {
+   const response = await minimartApi.get('/auth/google/checkcookie')
+   return response.data.expired
 }

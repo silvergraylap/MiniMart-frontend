@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout, fetchUserInfoThunk } from '../../features/authSlice'
-import { Link } from 'react-router-dom'
+import { logoutUserThunk, fetchUserInfoThunk } from '../../features/authSlice'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Button = styled.button`
@@ -26,8 +26,9 @@ const LoginButton = styled.button`
 `
 function Haeder() {
    const dispatch = useDispatch()
-   const user = useSelector((state) => state.auth.user)
+   const user = useSelector((state) => state.auth?.user)
    const token = useSelector((state) => state.auth.token)
+   const navigate = useNavigate()
 
    useEffect(() => {
       if (token && !user) {
@@ -36,8 +37,14 @@ function Haeder() {
    }, [dispatch, token, user])
 
    const handleLogout = () => {
-      dispatch(logout())
-      window.location.reload()
+      dispatch(logoutUserThunk())
+         .unwrap()
+         .then(() => {
+            navigate('/') // 로그아웃시 홈으로 이동
+         })
+         .catch((error) => {
+            alert('로그아웃 실패: ' + error)
+         })
    }
    console.log(user)
 
@@ -56,13 +63,13 @@ function Haeder() {
                <Button>고객센터</Button>
                {user ? (
                   <>
-                     <img style={{ width: '40px', height: '40px', borderRadius: '20px' }} src={user.profile_img} alt="카카오 프로필" />
+                     <img style={{ width: '40px', height: '40px', borderRadius: '20px' }} src={user.profile_img || '/public/none_profile_img.webp'} alt="프로필" />
                      <p style={{ width: '60px', margin: '0 40px 0 20px' }}>{user.name}</p>
                      <LoginButton onClick={handleLogout}>로그아웃</LoginButton>
                   </>
                ) : (
                   <Link
-                     to="/login "
+                     to="/login"
                      style={{
                         display: 'inline-block',
                         width: 'fit-content',
