@@ -85,6 +85,8 @@ const initialState = {
    isAuthenticated: false,
    loading: false,
    error: null,
+   loginLoading: false,
+   kakaoLoading: false,
 }
 
 const authSlice = createSlice({
@@ -148,17 +150,18 @@ const authSlice = createSlice({
 
          /* 로컬 로그인 */
          .addCase(loginUserThunk.pending, (state) => {
-            state.loading = true
+            state.loginLoading = true
             state.error = null
          })
          .addCase(loginUserThunk.fulfilled, (state, action) => {
-            state.loading = false
+            state.loginLoading = false
             state.isAuthenticated = true
             state.user = action.payload
+            state.error = null
          })
          .addCase(loginUserThunk.rejected, (state, action) => {
-            state.loading = false
-            state.error = action.payload
+            state.loginLoading = false
+            state.error = action.error.message || '로그인 실패'
          })
 
          /* 로컬 로그아웃 */

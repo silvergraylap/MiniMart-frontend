@@ -38,7 +38,7 @@ function App() {
             {/* 이메일 비번찾기 */}
             <Route path="/findpassword" element={<FindPasswordPage />} />
             {/* 내 정보 페이지 */}
-            <Route path="/Mypage" element={<Mypage />} />
+            <Route path="/mypage" element={<Mypage />} />
          </Routes>
       </>
    )
