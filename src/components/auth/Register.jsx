@@ -7,10 +7,12 @@ import '../../styles/register.css'
 function Register() {
    const [name, setName] = useState('')
    const [email, setEmail] = useState('')
+   const [age, setAge] = useState('')
    const [password, setPassword] = useState('')
    const [confirmPassword, setConfirmPassword] = useState('')
    const [postcode, setPostcode] = useState('')
    const [address, setAddress] = useState('')
+   const [phone_number, setPhone_number] = useState('')
    const [detailAddress, setDetailAddress] = useState('')
    const [extraAddress, setExtraAddress] = useState('')
    const [isRegisterComplete, setIsRegisterComplete] = useState(false)
@@ -42,12 +44,18 @@ function Register() {
          alert('비밀번호가 일치하지 않습니다!')
          return
       }
+      if (phone_number !== phone_number) {
+         alert('비밀번호가 일치하지 않습니다!')
+         return
+      }
 
       dispatch(
          registerUserThunk({
             name,
             email,
             password,
+            phone_number,
+            age,
             address: `${address} ${detailAddress} ${extraAddress}`,
          })
       )
@@ -95,7 +103,7 @@ function Register() {
 
          <div className="register-input">
             <label htmlFor="birthYear">출생년도</label>
-            <select id="birthYear" name="birthYear" className="birthyear-select">
+            <select id="birthYear" name="birthYear" className="birthyear-select" value={age} onChange={(e) => setAge(e.target.value)}>
                {Array.from({ length: 2025 - 1899 + 1 }, (_, i) => {
                   const year = 2025 - i
                   return (
@@ -113,11 +121,12 @@ function Register() {
                type="tel"
                id="phone"
                name="phone"
+               value={phone_number}
                className="phone-input"
                placeholder="01012345678"
                maxLength="11"
                onChange={(e) => {
-                  const onlyNums = e.target.value.replace(/\D/g, '')
+                  setPhone_number(e.target.value.replace(/\D/g, ''))
                   e.target.value = onlyNums
                }}
             />
@@ -126,7 +135,7 @@ function Register() {
          <div className="register-input">
             <label>주소지 입력</label>
             <div className="postcode-box">
-               <input type="number" className="postcode-box-input" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" />
+               <input type="number" className="postcode-box" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="우편번호 입력" />
                <button className="postcode-button">우편번호 찾기</button>
             </div>
          </div>
