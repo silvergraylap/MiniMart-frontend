@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import '../../styles/minipage.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserInfoThunk } from '../../features/authSlice'
+import { itemRecentThunk } from '../../features/itemSlice'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
 
@@ -37,6 +38,11 @@ function Home() {
    const dispatch = useDispatch()
    const user = useSelector((state) => state.auth.user)
    const token = useSelector((state) => state.auth.token)
+   const { itemRecent, loading, error } = useSelector((state) => state.item)
+
+   useEffect(() => {
+      dispatch(itemRecentThunk())
+   }, [dispatch])
 
    useEffect(() => {
       if (token && !user) {
@@ -103,62 +109,35 @@ function Home() {
          </div>
          {/* 신제품 출시! 나중에 상품 등록 되면 DB에서 어떻게 가져올지 보고 변경*/}
          <h1 className="new-h1">신제품 출시 !</h1>
+         {loading && <div>로딩중...</div>}
+         {error && <div>{error}</div>}
          <div style={{ display: 'flex' }}>
-            <Card sx={{ maxWidth: 345 }}>
-               <CardActionArea>
-                  <CardMedia sx={{ height: 500 }} component="img" height="140" image="/신제품출시!/new1.png" alt="신제품1" />
-                  <CardContent>
-                     <Typography gutterBottom variant="h5" component="div">
-                        주황색 후드티
-                     </Typography>
-                     <Typography component="div" sx={{ display: 'flex' }}>
-                        <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'left' }}>
-                           영희
-                        </Typography>
-                        <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'right' }}>
-                           →
-                        </Typography>
-                     </Typography>
-                  </CardContent>
-               </CardActionArea>
-            </Card>
-            <Card sx={{ maxWidth: 345 }}>
-               <CardActionArea>
-                  <CardMedia sx={{ height: 500 }} component="img" height="140" image="/신제품출시!/new2.png" alt="신제품2" />
-                  <CardContent>
-                     <Typography gutterBottom variant="h5" component="div">
-                        비니와 청가죽자켓
-                     </Typography>
-                     <Typography component="div" sx={{ display: 'flex' }}>
-                        <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'left' }}>
-                           영희
-                        </Typography>
-                        <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'right' }}>
-                           →
-                        </Typography>
-                     </Typography>
-                  </CardContent>
-               </CardActionArea>
-            </Card>
-            <Card sx={{ maxWidth: 345 }}>
-               <CardActionArea>
-                  <CardMedia sx={{ height: 500 }} component="img" height="140" image="/신제품출시!/new3.png" alt="신제품3" />
-                  <CardContent>
-                     <Typography gutterBottom variant="h5" component="div">
-                        흰 티셔츠
-                     </Typography>
+            {(itemRecent?.items ?? []).map((item) => {
+               // 대표 이미지(조인) 하나만 내려온다고 가정 (rep_img_yn = true)
+               const repImg = (item.ItemImgs && item.ItemImgs[0]) || null
+               console.log(item.ItemImgs[0].img_url)
 
-                     <Typography component="div" sx={{ display: 'flex' }}>
-                        <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'left' }}>
-                           영희
-                        </Typography>
-                        <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'right' }}>
-                           →
-                        </Typography>
-                     </Typography>
-                  </CardContent>
-               </CardActionArea>
-            </Card>
+               return (
+                  <Card key={item.id} sx={{ maxWidth: 345 }}>
+                     <CardActionArea>
+                        <CardMedia sx={{ height: 500 }} component="img" src={`${item.ItemImgs[0].img_url}`} alt={item.name} />
+                        <CardContent>
+                           <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'left' }}>
+                              {item.name}
+                           </Typography>
+                           <Typography component="div" sx={{ display: 'flex' }}>
+                              <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'left' }}>
+                                 {item.Seller?.name}
+                              </Typography>
+                              <Typography component="span" variant="h5" sx={{ color: 'text.secondary', textAlign: 'right' }}>
+                                 →
+                              </Typography>
+                           </Typography>
+                        </CardContent>
+                     </CardActionArea>
+                  </Card>
+               )
+            })}
          </div>
          <div style={{ display: 'flex', margin: '100px', flexWrap: 'wrap' }}>
             {/* MD 추천 픽 나중에 상품 등록 되면 DB에서 어떻게 가져올지 보고 결정*/}

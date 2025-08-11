@@ -1,5 +1,5 @@
 import React from 'react'
-import { itemCreate } from '../../api/item.Api'
+import { itemCreate } from '../../api/itemApi'
 
 function ItemCreatePage() {
    return (
