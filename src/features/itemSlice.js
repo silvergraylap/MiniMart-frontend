@@ -6,7 +6,6 @@ import { itemRecent } from '../api/itemApi'
 export const itemRecentThunk = createAsyncThunk('item/itemRecent', async (_, { rejectWithValue }) => {
    try {
       const data = await itemRecent()
-      console.log(data)
       return data
    } catch (error) {
       return rejectWithValue(error.response?.data?.message || '최근 상품 가져오기 실패')

@@ -115,7 +115,6 @@ function Home() {
             {(itemRecent?.items ?? []).map((item) => {
                // 대표 이미지(조인) 하나만 내려온다고 가정 (rep_img_yn = true)
                const repImg = (item.ItemImgs && item.ItemImgs[0]) || null
-               console.log(item.ItemImgs[0].img_url)
 
                return (
                   <Card key={item.id} sx={{ maxWidth: 345 }}>
