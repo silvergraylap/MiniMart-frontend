@@ -46,7 +46,6 @@ function Haeder() {
             alert('로그아웃 실패: ' + error)
          })
    }
-   console.log(user)
 
    return (
       <div>

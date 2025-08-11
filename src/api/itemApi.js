@@ -27,3 +27,14 @@ export const itemRecent = async () => {
       throw error
    }
 }
+
+// 인기 상품 불러오기
+export const itemPopular = async () => {
+   try {
+      const response = await minimartApi.get('/item/popular/age')
+      return response.data
+   } catch (error) {
+      console.error('인기 상품 불러오기 실패 : ', error)
+      throw error
+   }
+}

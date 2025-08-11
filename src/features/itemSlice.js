@@ -1,15 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { itemCreate } from '../api/itemApi'
+import { itemCreate, itemPopular } from '../api/itemApi'
 import { itemRecent } from '../api/itemApi'
 
 // 최근 상품 가져오기
 export const itemRecentThunk = createAsyncThunk('item/itemRecent', async (_, { rejectWithValue }) => {
    try {
       const data = await itemRecent()
-      console.log(data)
       return data
    } catch (error) {
       return rejectWithValue(error.response?.data?.message || '최근 상품 가져오기 실패')
+   }
+})
+
+// 인기 상품 가져오기
+export const itemPopularThunk = createAsyncThunk('item/itemPopular', async (_, { rejectWithValue }) => {
+   try {
+      const data = await itemPopular()
+      return data
+   } catch (error) {
+      return rejectWithValue(error.response?.data?.message || '인기 상품 가져오기 실패')
    }
 })
 
@@ -56,6 +65,18 @@ const itemSlice = createSlice({
             state.itemRecent = action.payload
          })
          .addCase(itemRecentThunk.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+         })
+         //   인기 등록된 상품
+         .addCase(itemPopularThunk.pending, (state) => {
+            state.loading = true
+         })
+         .addCase(itemPopularThunk.fulfilled, (state, action) => {
+            state.loading = false
+            state.itemRecent = action.payload
+         })
+         .addCase(itemPopularThunk.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
          })
