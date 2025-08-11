@@ -37,6 +37,9 @@ export const registerUserThunk = createAsyncThunk('auth/registerUser', async (us
 export const loginUserThunk = createAsyncThunk('auth/loginUser', async (credentials, { rejectWithValue }) => {
    try {
       const response = await loginUser(credentials)
+      if (response.data.token) {
+         localStorage.setItem('token', response.data.token)
+      }
       return response.data.user
    } catch (error) {
       return rejectWithValue(error.response?.data?.message || '로그인 실패')

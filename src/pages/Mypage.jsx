@@ -20,12 +20,16 @@ const MyPage = () => {
          setError(null)
          try {
             const res = await getMyPageData()
-            const userData = res.data?.data?.user
-            const ordersData = res.data?.data?.orders || []
-            const followingsData = res.data?.data?.followings || []
+            const body = res.data || {}
+            const userData = body.user || (body.data && body.data.user) || null
+            const ordersData = body.orders || (body.data && body.data.orders) || []
+            const followingsData = body.followings || (body.data && body.data.followings) || []
 
             if (!userData) {
-               throw new Error('유저 데이터를 불러올 수 없습니다.')
+               console.error('유저 데이터 없음 — 응답 전체:', res.data)
+               setError('서버 응답에 유저 정보가 없습니다. 콘솔을 확인하세요.')
+               setLoading(false)
+               return
             }
 
             setUser(userData)
@@ -43,7 +47,7 @@ const MyPage = () => {
          }
       }
       fetchData()
-   }, []) // token 의존성 제거, 최초 마운트 시 1회 실행
+   }, [])
 
    // 내 정보 수정 모드 토글
    const toggleEditMode = () => {
@@ -164,11 +168,11 @@ const MyPage = () => {
             {orders.length === 0 ? (
                <p>구매 내역이 없습니다.</p>
             ) : (
-               orders.map(({ order_id, product_name, product_image, order_date, status }) => (
+               orders.map(({ order_id, item_name, item_image, order_date, status }) => (
                   <div className="order-item" key={order_id}>
-                     <img src={product_image || '/images/default-product.png'} alt={product_name} />
+                     <img src={item_image || '/images/default-item.png'} alt={item_name} />
                      <div className="order-item-info">
-                        <p className="order-item-name">{product_name}</p>
+                        <p className="order-item-name">{item_name}</p>
                         <p className="order-item-date">주문일: {order_date}</p>
                         <p className="order-item-status">{status}</p>
                      </div>
