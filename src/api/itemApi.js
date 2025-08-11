@@ -16,3 +16,14 @@ export const itemCreate = async (data) => {
       throw error
    }
 }
+
+// 최근 상품 불러오기
+export const itemRecent = async () => {
+   try {
+      const response = await minimartApi.get('/item/recent')
+      return response.data
+   } catch (error) {
+      console.error('최근 상품 불러오기 실패 : ', error)
+      throw error
+   }
+}
