@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout, fetchUserInfoThunk } from '../../features/authSlice'
-import { Link } from 'react-router-dom'
+import { logoutUserThunk, fetchUserInfoThunk } from '../../features/authSlice'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Button = styled.button`
@@ -28,6 +28,7 @@ function Haeder() {
    const dispatch = useDispatch()
    const user = useSelector((state) => state.auth?.user)
    const token = useSelector((state) => state.auth.token)
+   const navigate = useNavigate()
 
    useEffect(() => {
       if (token && !user) {
@@ -36,8 +37,14 @@ function Haeder() {
    }, [dispatch, token, user])
 
    const handleLogout = () => {
-      dispatch(logout())
-      window.location.href = '/'
+      dispatch(logoutUserThunk())
+         .unwrap()
+         .then(() => {
+            navigate('/') // 로그아웃시 홈으로 이동
+         })
+         .catch((error) => {
+            alert('로그아웃 실패: ' + error)
+         })
    }
    console.log(user)
 
