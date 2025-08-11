@@ -76,8 +76,20 @@ export const checkAuthStatus = async () => {
 
 // 회원탈퇴
 export const deleteUser = async (token) => {
-   const response = await axios.delete('/users/me', {
+   const response = await minimartApi.delete('/users/me', {
       headers: { Authorization: `Bearer ${token}` },
    })
    return response.data
+}
+
+//구글 로그인시 확인창 관리 쿠키 생성
+export const setCookie = async () => {
+   const response = await minimartApi.post('/auth/google/setcookie')
+   return response.data.expired
+}
+
+//구글 로그인시 쿠키 체크
+export const checkCookie = async () => {
+   const response = await minimartApi.get('/auth/google/checkcookie')
+   return response.data.expired
 }

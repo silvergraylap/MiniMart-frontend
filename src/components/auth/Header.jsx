@@ -26,7 +26,7 @@ const LoginButton = styled.button`
 `
 function Haeder() {
    const dispatch = useDispatch()
-   const user = useSelector((state) => state.auth.user)
+   const user = useSelector((state) => state.auth?.user)
    const token = useSelector((state) => state.auth.token)
 
    useEffect(() => {
@@ -37,7 +37,7 @@ function Haeder() {
 
    const handleLogout = () => {
       dispatch(logout())
-      window.location.reload()
+      window.location.href = '/'
    }
    console.log(user)
 
@@ -56,13 +56,13 @@ function Haeder() {
                <Button>고객센터</Button>
                {user ? (
                   <>
-                     <img style={{ width: '40px', height: '40px', borderRadius: '20px' }} src={user.profile_img} alt="카카오 프로필" />
+                     <img style={{ width: '40px', height: '40px', borderRadius: '20px' }} src={user.profile_img || '/public/none_profile_img.webp'} alt="프로필" />
                      <p style={{ width: '60px', margin: '0 40px 0 20px' }}>{user.name}</p>
                      <LoginButton onClick={handleLogout}>로그아웃</LoginButton>
                   </>
                ) : (
                   <Link
-                     to="/login "
+                     to="/login"
                      style={{
                         display: 'inline-block',
                         width: 'fit-content',
