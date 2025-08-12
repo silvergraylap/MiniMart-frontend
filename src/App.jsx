@@ -12,6 +12,7 @@ import ItemCreatePage from './pages/item/ItemCreatePage'
 import Haeder from './components/auth/Header'
 import Mypage from './pages/Mypage'
 import GoogleLoginSuccess from './pages/auth/GoogleLoginSuccess'
+import Footer from './components/shared/Footer'
 
 function App() {
    const dispatch = useDispatch()
@@ -42,6 +43,7 @@ function App() {
             <Route path="/login/success/google" element={<GoogleLoginSuccess />} />
             <Route path="/mypage" element={<Mypage />} />
          </Routes>
+         <Footer />
       </>
    )
 }
