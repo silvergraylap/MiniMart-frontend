@@ -8,7 +8,7 @@ function IteamCreateForm() {
    const [imgUrls, setImgUrls] = useState([])
    const [imgFiles, setImgFiles] = useState([])
    const [detailsImg, setDetailsImg] = useState(null)
-   const [options, setOptions] = useState([{ id: 1, name: '기본옵션', price: '0', req_item_yn: true }])
+   const [options, setOptions] = useState([{ id: 1, name: '기본옵션', price: '0', rep_item_yn: true }])
    const [formData, setFormData] = useState({ status: 'FOR_SALE', stock_number: '0', price: '0', is_sale: false, sale: '0', description: '', name: '' })
    const [empty, setEmpty] = useState({ name: false, price: false, stock_number: false, description: false, options: false, imgs: false, img: false })
    const [hashtags, setHashtags] = useState('')
