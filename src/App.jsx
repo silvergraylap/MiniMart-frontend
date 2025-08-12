@@ -13,6 +13,7 @@ import Haeder from './components/auth/Header'
 import Mypage from './pages/Mypage'
 import GoogleLoginSuccess from './pages/auth/GoogleLoginSuccess'
 import Footer from './components/shared/Footer'
+import RegisterSeller from './pages/RegisterSeller'
 
 function App() {
    const dispatch = useDispatch()
@@ -32,6 +33,7 @@ function App() {
       <>
          <Haeder />
          <Routes>
+            {/* 메인 페이지 */}
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -42,6 +44,7 @@ function App() {
             {/* 내 정보 페이지 */}
             <Route path="/login/success/google" element={<GoogleLoginSuccess />} />
             <Route path="/mypage" element={<Mypage />} />
+            <Route path="seller-register" element={<RegisterSeller />}></Route>
          </Routes>
          <Footer />
       </>
