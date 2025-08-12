@@ -14,10 +14,10 @@ const UserInfoForm = () => {
 
    const [formData, setFormData] = useState({
       name: '',
-      phone: '',
+      phone_number: '',
       email: '',
       address: '',
-      profileImage: '',
+      profile_img: '',
    })
 
    useEffect(() => {
@@ -28,12 +28,13 @@ const UserInfoForm = () => {
       if (user) {
          setFormData({
             name: user.name || '',
-            phone: user.phone || '',
+            phone_number: user.phone_number || '',
             email: user.email || '',
             address: user.address || '',
-            profileImage: user.profileImage || '',
+            profile_img: user.profile_img || '',
          })
-         setPreviewImage(user.profileImage || '')
+         const fullImageUrl = user.profile_img ? `${API_BASE_URL}${user.profile_img}` : `${API_BASE_URL}/uploads/profile-images/default.png`
+         setPreviewImage(fullImageUrl)
       }
    }, [user])
 
@@ -54,8 +55,7 @@ const UserInfoForm = () => {
             alert('수정사항이 성공적으로 적용되었습니다.')
          })
          .catch((error) => {
-            console.error('업데이트 실패 에러:', error) // ① 에러 출력 추가
-            // 에러 메시지 구조가 다를 수 있어서 여러 경우를 대비
+            console.error('업데이트 실패 에러:', error)
             if (typeof error === 'string') {
                alert(`수정 실패: ${error}`)
             } else if (error?.message) {
@@ -93,11 +93,11 @@ const UserInfoForm = () => {
 
          uploadProfileImage(file)
             .then((uploadedImageUrl) => {
-               setFormData((prev) => ({ ...prev, profileImage: uploadedImageUrl }))
+               setFormData((prev) => ({ ...prev, profile_img: uploadedImageUrl }))
             })
             .catch(() => {
                alert('이미지 업로드 실패')
-               setPreviewImage(formData.profileImage)
+               setPreviewImage(formData.profile_img)
             })
       } else {
          alert('이미지 파일만 선택해주세요.')
@@ -108,7 +108,7 @@ const UserInfoForm = () => {
       const formData = new FormData()
       formData.append('profileImage', file)
 
-      const response = await fetch(`${API_BASE_URL}/mypage/uploads/profile-image`, {
+      const response = await fetch(`${API_BASE_URL}/mypage/uploads/profile-images`, {
          method: 'POST',
          headers: {
             Authorization: `Bearer ${token}`,
@@ -132,7 +132,7 @@ const UserInfoForm = () => {
          {error && <p className="error">에러: {error}</p>}
 
          <div className="user-info-left" onClick={handleImageClick} style={{ cursor: 'pointer' }}>
-            <img className="user-profile-img" src={previewImage || '/default-profile.png'} alt="프로필" style={{ cursor: 'pointer' }} />
+            <img className="user-profile-img" src={previewImage || `${API_BASE_URL}/uploads/profile-images/default.png`} alt="프로필" style={{ cursor: 'pointer' }} />
             <input ref={fileInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFileChange} />
          </div>
 
@@ -143,13 +143,13 @@ const UserInfoForm = () => {
             </div>
 
             <div className="profile-row">
-               <label htmlFor="phone">전화번호</label>
-               <input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} />
+               <label htmlFor="phone_number">전화번호</label>
+               <input id="phone_number" name="phone_number" type="tel" value={formData.phone_number} placeholder="01012345678" maxLength="11" onChange={handleChange} />
             </div>
 
             <div className="profile-row">
                <label htmlFor="email">이메일</label>
-               <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} />
+               <input id="email" name="email" type="email" value={formData.email} placeholder="변경할 이메일" onChange={handleChange} />
             </div>
 
             <div className="profile-row">
@@ -158,7 +158,7 @@ const UserInfoForm = () => {
             </div>
 
             <button className="btn btn-save" onClick={handleSave} disabled={loading}>
-               {loading ? '저장 중...' : '수정된 정보 저장'}
+               {loading ? '저장 중...' : '정보 수정'}
             </button>
             <button className="btn btn-withdraw" onClick={handleDeleteAccount} disabled={loading}>
                회원 탈퇴
