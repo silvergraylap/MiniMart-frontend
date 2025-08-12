@@ -9,6 +9,13 @@
 
 .item-upload-form * {
    margin: 0;
+   text-align: left;
+}
+
+.item-upload-form .empty {
+   color: rgb(255, 30, 0);
+   padding: 10px 0;
+   font-size: 0.9rem;
 }
 
 .item-upload-form label {
@@ -142,7 +149,7 @@
 }
 
 .item-upload-form button[type='submit'] {
-   width: 80%;
+   width: 100%;
    height: 40px;
    background-color: #facc15;
    border-radius: 10px;
@@ -151,6 +158,7 @@
    font-weight: bold;
    font-size: 1.5rem;
    cursor: pointer;
+   text-align: center;
 }
 
 .item-upload-form button[type='submit']:hover {
@@ -165,6 +173,7 @@
    color: #333;
    font-weight: bold;
    cursor: pointer;
+   text-align: center;
 }
 
 .item-upload-form .item-options button:hover {
