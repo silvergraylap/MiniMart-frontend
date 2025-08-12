@@ -5,6 +5,7 @@ import { fetchUserInfoThunk } from '../../features/authSlice'
 import { itemPopularThunk, itemRecentThunk } from '../../features/itemSlice'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
+import SearchBar from '../shared/SearchBar'
 
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -56,24 +57,9 @@ function Home() {
 
    console.log(itemPopular)
    return (
-      <div style={{ width: '1200px' }}>
+      <div style={{ width: '100%' }}>
          {/* 검색하는 부분 */}
-         <div className="search-bar">
-            <img className="search-logo" src="Logo.png" alt="로고" />
-            <div className="serach">
-               <div className="hamburger">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-               </div>
-               <div className="search-text">
-                  <p>검색어를 입력해주세요</p>
-               </div>
-               <div className="search-icon">
-                  <SearchIcon />
-               </div>
-            </div>
-         </div>
+         <SearchBar />
          <div className="slider">
             {/* 슬라이드 부분 */}
             <Slider {...settings}>

@@ -12,6 +12,7 @@ import ItemCreatePage from './pages/item/ItemCreatePage'
 import Haeder from './components/auth/Header'
 import Mypage from './pages/Mypage'
 import GoogleLoginSuccess from './pages/auth/GoogleLoginSuccess'
+import Footer from './components/shared/Footer'
 import RegisterSeller from './pages/RegisterSeller'
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <Route path="/mypage" element={<Mypage />} />
             <Route path="seller-register" element={<RegisterSeller />}></Route>
          </Routes>
+         <Footer />
       </>
    )
 }

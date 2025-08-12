@@ -1,275 +1,365 @@
-.user-info-box {
-   display: flex;
-   border: 1px solid #ddd;
-   padding: 24px;
-   border-radius: 12px;
-   background-color: #fafafa;
-   gap: 32px;
+/* ---------- 기본 레이아웃 ---------- */
+.mypage-container {
+   max-width: 980px; /* 화면 중앙 컨텐츠 너비 */
+   margin: 0 auto;
+   padding: 24px 16px 80px; /* 상단 네비/배너 여유 포함 */
+   box-sizing: border-box;
+   font-family: 'Noto Sans KR', 'Helvetica Neue', Arial, sans-serif;
+   color: #222;
+   background-color: #fff;
 }
 
-/* 왼쪽: 프로필 이미지 */
+/* 상단 노란색 배너(스크린샷 상단 노란 띠) */
+.top-accent {
+   height: 48px;
+   background: #f0d85a; /* 스크린샷의 옅은 노란색 */
+   width: 100%;
+}
+
+/* ---------- 프로필 섹션 ---------- */
+.user-info-box {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 18px;
+   margin-top: 28px;
+   margin-bottom: 28px;
+}
+
+/* 아바타 */
+
 .user-info-left {
-   flex-shrink: 0;
+   width: 140px;
+   display: inline-block;
+   cursor: pointer;
 }
 
 .user-profile-img {
-   width: 120px;
-   height: 120px;
+   width: 140px;
+   height: 140px;
    border-radius: 50%;
    object-fit: cover;
-   border: 1px solid #ccc;
+   cursor: pointer; /* 이미지 위 마우스 커서 변경 */
 }
 
-/* 오른쪽: 사용자 정보 */
-.user-info-right {
-   flex: 1;
+.user-info-left img.user-profile-img {
+   width: 140px;
+   height: 140px;
+   border-radius: 50%;
+   object-fit: cover;
+   border: 6px solid transparent; /* 그림자 대신 공간 */
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+   background-clip: padding-box;
+}
+
+/* 프로필 폼 카드 */
+.profile-card {
+   width: 100%;
+   max-width: 640px;
+   background: #fff;
+   border: 1px solid #eee;
+   border-radius: 8px;
+   padding: 20px;
+   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+   box-sizing: border-box;
+}
+
+/* form 필드 */
+.profile-row {
    display: flex;
    flex-direction: column;
-   gap: 16px;
+   gap: 8px;
+   margin-bottom: 12px;
 }
 
-.user-field {
-   display: flex;
-   flex-direction: column;
-   gap: 4px;
-}
-
-.user-field label {
+.profile-row label {
+   font-size: 13px;
    font-weight: 600;
-   font-size: 14px;
-   color: #333;
+   color: #444;
 }
 
-.user-value {
-   padding: 10px;
-   border: 1px solid #ddd;
+.profile-row input[type='text'],
+.profile-row input[type='email'],
+.profile-row input[type='tel'] {
+   border: 1px solid #e6e6e6;
    border-radius: 6px;
-   background-color: #fff;
+   padding: 10px 12px;
    font-size: 14px;
+   background: #fff;
+   outline: none;
+   transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
-/* 주소 필드 특별 처리 */
+.profile-row input:focus {
+   border-color: #d4d4d4;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* 주소 영역 (입력 + 버튼) */
 .user-address-box {
    display: flex;
    gap: 8px;
    align-items: center;
 }
 
-.user-address-input {
+.user-address-box .user-address-input {
    flex: 1;
-   padding: 10px;
-   border: 1px solid #ddd;
+}
+
+/* 버튼 공통 */
+.btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
+   padding: 10px 14px;
    border-radius: 6px;
-   font-size: 14px;
-   background-color: #fff;
-}
-
-.address-edit-button {
-   padding: 8px 16px;
-   font-size: 14px;
-   border: none;
-   border-radius: 6px;
-   background-color: #007bff;
-   color: #fff;
-   cursor: pointer;
-   white-space: nowrap;
-}
-
-.address-edit-button:hover {
-   background-color: #0056b3;
-}
-
-/* 탈퇴 버튼 */
-.user-buttons {
-   margin-top: 24px;
-}
-
-.withdraw-button {
-   padding: 10px 16px;
-   font-size: 14px;
-   border: none;
-   border-radius: 6px;
-   background-color: #dc3545;
-   color: #fff;
-   cursor: pointer;
-}
-
-.withdraw-button:hover {
-   background-color: #b02a37;
-}
-
-.order-list-section {
-   margin-top: 40px;
-}
-
-.order-list-title {
-   font-size: 20px;
    font-weight: 700;
-   margin-bottom: 16px;
-   border-bottom: 2px solid #333;
-   padding-bottom: 8px;
+   font-size: 14px;
+   cursor: pointer;
+   border: none;
+   transition: transform 0.06s ease, box-shadow 0.06s ease, background-color 0.08s ease;
+}
+
+/* 기본 액션 버튼들 */
+.btn-save {
+   background: #222; /* 검정 버튼 */
+   color: #fff;
+   width: 100%;
+   display: block;
+   margin-top: 10px;
+   box-shadow: none;
+}
+
+.btn-save:hover {
+   transform: translateY(-1px);
+   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.btn-cancel {
+   background: #fff;
+   color: #222;
+   border: 1px solid #ddd;
+   width: 100%;
+   margin-top: 8px;
+}
+
+/* 탈퇴 버튼 (붉은색 대신 스크린샷처럼 검은색에 테두리) */
+.btn-withdraw {
+   background: #222;
+   color: #fff;
+   width: 100%;
+   margin-top: 8px;
+}
+
+/* ---------- 섹션 타이틀(노란 배경 박스) ---------- */
+.section-title {
+   margin-top: 28px;
+   margin-bottom: 12px;
+   background: #f0d85a;
+   color: #222;
+   padding: 12px 16px;
+   border-radius: 4px;
+   text-align: center;
+   font-weight: 700;
+   letter-spacing: 0.5px;
+}
+
+/* ---------- 주문 목록(카드) ---------- */
+.order-list {
+   margin-top: 14px;
+   display: flex;
+   flex-direction: column;
+   gap: 14px;
 }
 
 .order-item {
    display: flex;
-   align-items: center;
-   border: 1px solid #ddd;
-   border-radius: 10px;
-   padding: 16px;
-   margin-bottom: 16px;
-   background-color: #fff;
    gap: 16px;
+   align-items: flex-start;
+   border: 1px solid #eee;
+   padding: 14px;
+   border-radius: 8px;
+   background: #fff;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
-/* 상품 이미지 */
-.order-item img {
+.order-item .thumb {
    width: 100px;
    height: 100px;
-   object-fit: cover;
-   border-radius: 8px;
+   background: #f2f2f2;
+   border-radius: 6px;
    flex-shrink: 0;
-   border: 1px solid #ccc;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #aaa;
+   font-size: 12px;
 }
 
-/* 텍스트 정보 영역 */
-.order-item-info {
+.order-item .info {
    flex: 1;
    display: flex;
    flex-direction: column;
    gap: 6px;
 }
 
-.order-item-name {
-   font-size: 16px;
-   font-weight: 600;
+.order-item .info .title {
+   font-size: 15px;
+   font-weight: 700;
+   color: #222;
 }
 
-.order-item-date {
-   font-size: 14px;
+.order-item .info .meta {
+   font-size: 13px;
    color: #666;
+   line-height: 1.4;
 }
 
-.order-item-status {
-   font-size: 14px;
-   color: #007bff;
-   font-weight: 500;
-}
-
-/* 버튼 영역 */
-.order-item-actions {
+/* 주문 액션 버튼들 */
+.order-item .actions {
    display: flex;
    flex-direction: column;
    gap: 8px;
 }
 
-.order-action-button {
-   padding: 8px 12px;
-   font-size: 14px;
-   border: none;
+.btn-small {
+   padding: 8px 10px;
+   font-size: 13px;
    border-radius: 6px;
-   background-color: #28a745;
-   color: #fff;
+   border: 1px solid #111;
+   background: #fff;
+   color: #111;
    cursor: pointer;
-   white-space: nowrap;
 }
 
-.order-action-button:hover {
-   background-color: #218838;
-}
-.following-list-section {
-   margin-top: 40px;
-}
-
-.following-list-title {
-   font-size: 20px;
-   font-weight: 700;
-   margin-bottom: 16px;
-   border-bottom: 2px solid #333;
-   padding-bottom: 8px;
+.btn-small.primary {
+   background: #222;
+   color: #fff;
+   border: none;
 }
 
-.following-list {
+/* 판매자 인포(오른쪽 작은 영역) */
+.order-item .seller-mini {
    display: flex;
-   flex-wrap: wrap;
-   gap: 16px;
+   flex-direction: column;
+   align-items: flex-end;
+   gap: 6px;
+   width: 120px;
+   min-width: 120px;
+}
+
+/* ---------- 팔로잉한 판매자 그리드 ---------- */
+.following-list {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 18px;
+   margin-top: 12px;
 }
 
 .following-item {
-   width: 200px;
-   border: 1px solid #ddd;
-   border-radius: 10px;
-   padding: 16px;
-   background-color: #fff;
+   border: 1px solid #eee;
+   padding: 12px;
+   border-radius: 8px;
+   text-align: center;
+   background: #fff;
+   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.03);
    display: flex;
    flex-direction: column;
    align-items: center;
+   gap: 8px;
 }
 
 .following-thumbnail {
-   width: 80px;
-   height: 80px;
-   border-radius: 50%;
+   width: 84px;
+   height: 84px;
+   border-radius: 8px;
+   background: #f2f2f2;
    object-fit: cover;
-   margin-bottom: 12px;
-   border: 1px solid #ccc;
 }
 
 .following-nickname {
-   font-size: 16px;
-   font-weight: 600;
-   margin-bottom: 8px;
-   text-align: center;
+   font-weight: 700;
+   color: #222;
+   font-size: 14px;
 }
 
+.following-desc {
+   font-size: 13px;
+   color: #666;
+}
+
+/* 팔로잉 취소 버튼 (작고 어두운 버튼) */
 .unfollow-button {
-   padding: 6px 12px;
-   font-size: 14px;
-   background-color: #f5f5f5;
+   margin-top: 8px;
+   background: #222;
    color: #fff;
-   border: 1px solid #ccc;
+   border: none;
+   padding: 8px 12px;
    border-radius: 6px;
+   font-weight: 700;
    cursor: pointer;
 }
 
-.unfollow-button:hover {
-   background-color: #c82333;
+/* 판매자 등록 버튼 (노란 원형 느낌) */
+.register-seller-btn {
+   display: inline-block;
+   margin: 28px auto 0;
+   background: #f0d85a;
+   padding: 10px 18px;
+   border-radius: 20px;
+   color: #111;
+   font-weight: 800;
 }
 
-/* 팔로잉한 판매자 섹션 */
-.followed-sellers {
-   margin-top: 40px;
-}
-
-.followed-sellers h2 {
-   font-size: 20px;
-   margin-bottom: 16px;
-}
-
-.followed-seller-list {
-   display: flex;
-   flex-wrap: wrap;
-   gap: 16px;
-}
-
-.followed-seller-card {
-   width: 150px;
-   padding: 16px;
-   border: 1px solid #e0e0e0;
-   border-radius: 12px;
+/* ---------- 상태/메시지 ---------- */
+.loading,
+.error {
    text-align: center;
-   background-color: #fdfdfd;
+   padding: 18px;
+   color: #666;
 }
 
-.followed-seller-card img {
-   width: 80px;
-   height: 80px;
-   object-fit: cover;
-   border-radius: 50%;
-   margin-bottom: 10px;
+/* ---------- 반응형 ---------- */
+@media (max-width: 900px) {
+   .mypage-container {
+      padding: 16px;
+      max-width: 720px;
+   }
+
+   .following-list {
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .order-item {
+      flex-direction: column;
+      align-items: stretch;
+   }
+
+   .order-item .seller-mini {
+      width: 100%;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-direction: row;
+   }
 }
 
-.seller-nickname {
-   font-size: 16px;
-   font-weight: bold;
-   margin-bottom: 8px;
+@media (max-width: 520px) {
+   .profile-card {
+      padding: 14px;
+   }
+
+   .following-list {
+      grid-template-columns: 1fr;
+   }
+
+   .site-footer .footer-inner {
+      grid-template-columns: 1fr 1fr;
+   }
+}
+
+/* small polish */
+.profile-card .label-note {
+   font-size: 12px;
+   color: #999;
 }
