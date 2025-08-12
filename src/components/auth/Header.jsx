@@ -47,6 +47,10 @@ function Haeder() {
          })
    }
 
+   const goToMyPage = () => {
+      navigate('/mypage')
+   }
+
    return (
       <div>
          <div style={{ display: 'flex', width: '100%', height: '89px' }}>
@@ -62,7 +66,7 @@ function Haeder() {
                <Button>고객센터</Button>
                {user ? (
                   <>
-                     <img style={{ width: '40px', height: '40px', borderRadius: '20px' }} src={user.profile_img} alt="카카오 프로필" />
+                     <img style={{ width: '40px', height: '40px', borderRadius: '20px', cursor: 'pointer' }} src={user.profile_img} alt="카카오 프로필" onClick={goToMyPage} />
                      <p style={{ width: '60px', margin: '0 40px 0 20px' }}>{user.name}</p>
                      <LoginButton onClick={handleLogout}>로그아웃</LoginButton>
                   </>

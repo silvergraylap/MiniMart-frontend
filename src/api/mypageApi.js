@@ -1,23 +1,21 @@
 import axios from 'axios'
-import minimartApi from './axiosApi'
-const API_URL = import.meta.env.VITE_API_URL
 
-// 내 정보 + 구매 내역 + 팔로잉 목록 조회
-export const getMyPageData = async () => {
-   return await minimartApi.get('/mypage')
+export const getMyPage = () => {
+   return axios.get('/mypage', { withCredentials: true })
 }
 
-// 내 정보 수정
-export const updateMyPageData = async (formData) => {
-   return await minimartApi.put('/mypage', formData)
+export const updateMyPage = (data) => {
+   return axios.patch('/mypage', data, { withCredentials: true })
 }
 
-// 회원 탈퇴
-export const deleteMyAccount = async () => {
-   return await minimartApi.delete('/mypage')
+export const deleteAccount = () => {
+   return axios.delete('/mypage/account', { withCredentials: true })
 }
 
-// 팔로잉 취소 (sellerId: 숫자 or 문자열)
-export const unfollowSeller = async (sellerId) => {
-   return await minimartApi.post(`/mypage/unfollow/${sellerId}`)
+export const writeReview = (orderId, reviewData) => {
+   return axios.post(`/orders/${orderId}/review`, reviewData, { withCredentials: true })
+}
+
+export const unfollowSeller = (sellerId) => {
+   return axios.delete(`/follow/${sellerId}`, { withCredentials: true })
 }
