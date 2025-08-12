@@ -1,9 +1,6 @@
+import axios from 'axios'
 import minimartApi from './axiosApi'
 const API_URL = import.meta.env.VITE_API_URL
-const token = localStorage.getItem('token')
-if (token) {
-   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-}
 
 // 카카오 로그인 URL 가져오기
 export const getKakaoLoginUrl = async () => {
@@ -28,10 +25,14 @@ export const fetchUserInfo = async () => {
    }
 }
 
-// 로그아웃시 토큰 삭제
+// 카카오 로그아웃
 export const KakaoLogout = async () => {
-   await minimartApi.post('/auth/kakao/logout') // 서버 호출 (선택 사항)
-   localStorage.removeItem('token') // 로컬에서 토큰 삭제
+   try {
+      await minimartApi.post('/auth/kakao/logout', {})
+   } catch (_) {
+   } finally {
+      localStorage.removeItem('token')
+   }
 }
 
 // 회원가입
@@ -62,16 +63,21 @@ export const logoutUser = async () => {
 
    if (token) {
       try {
-         const response = await minimartApi.post('/auth/logout', null, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-         })
+         const response = await minimartApi.post(
+            '/auth/local/logout',
+            {},
+            {
+               headers: {
+                  Authorization: `Bearer ${token}`,
+               },
+            }
+         )
 
          localStorage.removeItem('token')
          return response
       } catch (error) {
          console.error(`API Request 오류: ${error}`)
+
          throw error
       }
    } else {

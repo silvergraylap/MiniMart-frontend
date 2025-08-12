@@ -46,7 +46,6 @@ function Haeder() {
             alert('로그아웃 실패: ' + error)
          })
    }
-   console.log(user)
 
    return (
       <div>
@@ -63,7 +62,7 @@ function Haeder() {
                <Button>고객센터</Button>
                {user ? (
                   <>
-                     <img style={{ width: '40px', height: '40px', borderRadius: '20px' }} src={user.profile_img || '/public/none_profile_img.webp'} alt="프로필" />
+                     <img style={{ width: '40px', height: '40px', borderRadius: '20px' }} src={user.profile_img} alt="카카오 프로필" />
                      <p style={{ width: '60px', margin: '0 40px 0 20px' }}>{user.name}</p>
                      <LoginButton onClick={handleLogout}>로그아웃</LoginButton>
                   </>
