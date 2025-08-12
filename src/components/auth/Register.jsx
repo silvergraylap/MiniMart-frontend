@@ -178,10 +178,6 @@ function Register() {
                {loading ? '가입 중...' : '회원가입 완료'}
             </button>
          </div>
-
-         <div className="seller-switch">
-            <p onClick={() => navigate('/seller-register')}>저는 판매자입니다</p>
-         </div>
       </div>
    )
 }
