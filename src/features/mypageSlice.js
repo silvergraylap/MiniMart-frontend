@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getMyPage, updateMyPage, deleteAccount, writeReview, unfollowSeller } from '../api/mypageApi'
+import axios from 'axios'
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 // 내 정보 불러오기
 export const fetchMyPageThunk = createAsyncThunk('mypage/fetchMyPage', async (_, thunkAPI) => {
@@ -17,6 +20,7 @@ export const updateMyPageThunk = createAsyncThunk('mypage/updateMyPage', async (
       const res = await updateMyPage(formData)
       return res.data
    } catch (err) {
+      console.error('updateMyPageThunk error response:', err.response)
       return thunkAPI.rejectWithValue(err.response?.data || '수정 실패')
    }
 })
@@ -61,6 +65,19 @@ const mypageSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder
+         // 회원정보 수정
+         .addCase(updateMyPageThunk.pending, (state) => {
+            state.loading = true
+            state.error = null
+         })
+         .addCase(updateMyPageThunk.fulfilled, (state, action) => {
+            state.loading = false
+            state.user = action.payload.user // 서버가 user 객체를 반환한다면
+         })
+         .addCase(updateMyPageThunk.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+         })
          // 회원 탈퇴
          .addCase(deleteAccountThunk.pending, (state) => {
             state.loading = true

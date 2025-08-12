@@ -20,6 +20,8 @@ function Register() {
    const dispatch = useDispatch()
    const navigate = useNavigate()
    const { loading, error } = useSelector((state) => state.auth)
+   const user = useSelector((state) => state.auth.user)
+   const profileUrl = user?.profile_img || '/uploads/profile-images/default.png'
 
    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
    const validatePassword = (password) => /^(?=.*[A-Za-z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)
@@ -75,7 +77,6 @@ function Register() {
          </div>
       )
    }
-
    return (
       <div className="register-container">
          <h2>회원가입</h2>
@@ -103,7 +104,17 @@ function Register() {
 
          <div className="register-input">
             <label htmlFor="birthYear">출생년도</label>
-            <select id="birthYear" name="birthYear" className="birthyear-select" value={age} onChange={(e) => setAge(e.target.value)}>
+            <select
+               id="birthYear"
+               name="birthYear"
+               className="birthyear-select"
+               value={2025 - age} // 나이에서 출생년도를 계산하여 value에 바인딩
+               onChange={(e) => {
+                  const selYear = parseInt(e.target.value, 10)
+                  const calAge = 2025 - selYear
+                  setAge(calAge)
+               }}
+            >
                {Array.from({ length: 2025 - 1899 + 1 }, (_, i) => {
                   const year = 2025 - i
                   return (
